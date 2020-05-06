@@ -43,45 +43,43 @@ but I focused on making the model light with around 1 million parameters. The ta
 </div>
 
 <div class="row">
-  <div class="container">
-    <div class="col-md-6" >
-  <h4 id ='status' >Loading Model... </h4>	  
-  <canvas id="canvas" width="300" height="300" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
-  <div class="btn-group" style = 'margin-top:40px; '>
-  <input type="range" min="5" max="20" value="10" class="slider" id="myRange" style ='margin-top:20px;'>
-  <button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button>
-      </div>   
-  </div>
-    <div class="col-md-6">
-      <section style="margin-top:120px">
-      <div class="pieID pie">
-        
-      </div>
-      <ul class="pieID legend">
-        <li>
-          <em id = "sym1"></em>
-          <span id = "prob1" ></span>
-        </li>
-        <li>
-          <em id = "sym2"></em>
-          <span id = "prob2"></span>
-        </li>
-        <li>
-          <em id = "sym3"></em>
-          <span id = "prob3"></span>
-        </li>
-        <li>
-          <em id = "sym4"></em>
-          <span id = "prob4"></span>
-        </li>
-        <li>
-          <em id = "sym5"></em>
-          <span id = "prob5"></span>
-        </li>
-      </ul>
-    </section>
-  </div>
-  </div>
+  <div class="col" style ='margin-left:100px;'>
+<h4 id ='status' >Loading Model... </h4>	  
+<canvas id="canvas" width="300" height="300" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
+<div class="btn-group" style = 'margin-top:40px; '>
+<input type="range" min="5" max="20" value="10" class="slider" id="myRange" style ='margin-top:20px;'>
+<button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button>
+    </div>   
+</div>
+  <div class="col">
+    <section style="margin-top:120px">
+    <div class="pieID pie">
+      
+    </div>
+    <ul class="pieID legend">
+      <li>
+        <em id = "sym1"></em>
+        <span id = "prob1" ></span>
+      </li>
+      <li>
+        <em id = "sym2"></em>
+        <span id = "prob2"></span>
+      </li>
+      <li>
+        <em id = "sym3"></em>
+        <span id = "prob3"></span>
+      </li>
+      <li>
+        <em id = "sym4"></em>
+        <span id = "prob4"></span>
+      </li>
+      <li>
+        <em id = "sym5"></em>
+        <span id = "prob5"></span>
+      </li>
+    </ul>
+  </section>
+</div>
 </div>  
 </body>
 <script src="js/pie.js"></script>
