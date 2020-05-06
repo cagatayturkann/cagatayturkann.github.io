@@ -1,0 +1,40 @@
+brain
+bridge
+sun
+eyeglasses
+ladder
+table
+clock
+syringe
+square
+umbrella
+cup
+t-shirt
+screwdriver
+bird
+bicycle
+sock
+ice_cream
+car
+chair
+cell phone
+ear
+eye
+flower
+fork
+helicopter
+light bulb
+mushroom
+paintbrush
+pizza
+shorts
+skull
+skyscraper
+snowflake
+snowman
+The Eiffel Tower
+t-shirt
+wheel
+windmill
+wine bottle
+wine glass
