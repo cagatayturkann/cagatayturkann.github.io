@@ -1,0 +1,274 @@
+<!doctype html><html lang="en-us">
+  <head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="generator" content="L1nkr theme for Hugo" />
+
+
+
+<title>Çağatay Türkan</title>
+<meta name="title" content="Çağatay Türkan" />
+
+
+
+  <meta name="author" content="Çağatay Türkan" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/css/main.bundle.min.f1ccd6d02bc0d5bb31cf0710e1ba00b915358d4532a48334e0bbd94cb23825a9106b3a3f9a9c82884d882090e65b1e1c1b0acb6be6895d2b3705725cc710ca65.css" integrity="sha512-8czW0CvA1bsxzwcQ4boAuRU1jUUypIM04LvZTLI4JakQazo/mpyCiE2IIJDmWx4cGwrLa&#43;aJXSs3BXJcxxDKZQ==" />
+
+
+
+
+
+
+
+<script defer src="/ja/main.bundle.min.dd5253fb998de7c3246284f69b898861b0a8f28b277c61634af94182a8ad566c8aaca6688eecf256f397c9777041691486ce6c63eaba4132b2629eaca4a04feb.js" integrity="sha512-3VJT&#43;5mN58MkYoT2m4mIYbCo8osnfGFjSvlBgqitVmyKrKZojuzyVvOXyXdwQWkUhs5sY&#43;q6QTKyYp6spKBP6w=="></script>
+
+
+
+
+
+
+<meta property="og:title" content="How to Create JWT Tokens for using App Store Connect API?" />
+<meta property="og:description" content="Hello everyone! Welcome to the first article about App Store Connect API. In this first article, I am going to give a brief explanation of App Store Connect API and how to create JWT tokens for the API." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog-en/how-to-create-jwt-token-using-app-store-connect-api/" /><meta property="article:section" content="blog-en" />
+<meta property="article:published_time" content="2023-11-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-24T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="How to Create JWT Tokens for using App Store Connect API?"/>
+<meta name="twitter:description" content="Hello everyone! Welcome to the first article about App Store Connect API. In this first article, I am going to give a brief explanation of App Store Connect API and how to create JWT tokens for the API."/>
+
+
+  </head>
+  <body class="flex h-screen flex-col justify-between bg-neutral-100 dark:bg-neutral-800">
+    <div>
+      <header class="sticky top-0 z-10 bg-neutral-100 dark:bg-neutral-800">
+        
+
+
+
+<section class="mx-auto flex max-w-screen-xl items-center justify-between p-4">
+  <a href="/" class="flex items-center space-x-3">
+    
+    <span class="self-center whitespace-nowrap text-2xl font-semibold text-slate-700 dark:text-slate-400">
+      Çağatay Türkan
+    </span>
+  </a>
+  <div>
+    <button id="hamburger-button" class="relative h-8 w-8 cursor-pointer text-3xl md:hidden" aria-label="hamburger-button">
+      <div
+        class="absolute top-4 -mt-0.5 h-[3px] w-8 rounded bg-slate-700 transition-all duration-500 before:absolute before:h-[3px] before:w-8 before:-translate-x-4 before:-translate-y-2.5 before:rounded before:bg-slate-700 before:transition-all before:duration-500 before:content-[''] after:absolute after:h-[3px] after:w-8 after:-translate-x-4 after:translate-y-2.5 after:rounded after:bg-slate-700 after:transition-all after:duration-500 after:content-[''] dark:bg-slate-400 before:dark:bg-slate-400 after:dark:bg-slate-400"></div>
+    </button>
+    <nav class="hidden space-x-8 text-xl md:block" aria-label="main">
+      
+        <a href="/" class="px-3 py-2 text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+          Home
+        </a>
+      
+        <a href="/about" class="px-3 py-2 text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+          About
+        </a>
+      
+        <a href="/blog-en" class="px-3 py-2 text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+          Blog-EN
+        </a>
+      
+        <a href="/blog-tr" class="px-3 py-2 text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+          Blog-TR
+        </a>
+      
+    </nav>
+  </div>
+</section>
+<section id="mobile-menu" class="absolute hidden w-full origin-top animate-open-menu flex-col justify-center bg-neutral-100 text-4xl dark:bg-neutral-800">
+  <nav class="flex min-h-screen flex-col items-center py-8" aria-label="mobile">
+    
+      <a href="/" class="px-3 py-2 text-center text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+        Home
+      </a>
+    
+      <a href="/about" class="px-3 py-2 text-center text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+        About
+      </a>
+    
+      <a href="/blog-en" class="px-3 py-2 text-center text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+        Blog-EN
+      </a>
+    
+      <a href="/blog-tr" class="px-3 py-2 text-center text-slate-700 hover:text-indigo-500 md:p-0 dark:text-slate-400">
+        Blog-TR
+      </a>
+    
+  </nav>
+</section>
+
+      </header>
+      <main>
+        
+  
+  
+  
+  
+
+
+  <div class="justify-left mx-auto mt-8 flex max-w-screen-md px-4">
+    <article>
+      <h1 class="text-4xl font-extrabold text-slate-700 dark:text-slate-200">
+        How to Create JWT Tokens for using App Store Connect API?
+      </h1>
+      <h2 class="mt-4 text-2xl text-slate-500 dark:text-slate-400">
+        
+      </h2>
+      <div class="mb-4 mt-2 text-sm text-slate-500 dark:text-slate-400">
+        Nov 24, 2023 - 4 minute read
+      </div>
+
+      
+        
+        <div class="flex flex-col">
+          <img class="mt-4 h-full w-full object-cover" src="/images/bg_hu93ec3f9fca17ec0f2230a149f931e04b_154883_filter_11492400015018413633.webp" alt="feature image" height="386" width="736" />
+          
+        </div>
+      
+
+
+      <span class="prose prose-slate text-lg text-slate-700 dark:prose-invert dark:text-slate-200">
+        <p><br>
+Hello everyone! Welcome to the first article about App Store Connect API. In this first article, I am going to give a brief explanation of App Store Connect API and how to create JWT tokens for the API.</p>
+<h3 id="what-is-app-store-connect-api">What is App Store Connect API?</h3>
+<p>The App Store Connect API is a REST API that enables the automation of actions you take in App Store Connect. This API empowers developers to seamlessly handle various tasks, from app submission and updates to managing in-app purchases, monitoring app performance and user engagement through comprehensive reports, responding to customer reviews and feedback effectively, and many more.</p>
+<h3 id="why-jwt-token">Why JWT Token?</h3>
+<p>Without a token, you won&rsquo;t be able to get the response from the App Store Connect API but mainly API requires JSON Web Token (JWT) for authentication and authorization purposes. In the context of the API, the JWT token serves as a secure and standardized method to verify the identity of the client and to ensure that it has the necessary permissions to access the requested resources.</p>
+<h3 id="how-to-create-a-jwt-token">How to Create a JWT Token?</h3>
+<p>Before creating JWT tokens for using the App Store Connect API we need a few steps to setup.</p>
+<ul>
+<li>
+<p>Generate API Key from App Store Connect GUI</p>
+</li>
+<li>
+<p>Download the private key in the p8 format</p>
+</li>
+<li>
+<p>Copy your Issuer ID and API Key ID</p>
+</li>
+</ul>
+<h3 id="generate-api-key">Generate API Key</h3>
+<p>To generate an API key, we have to log in to the App Store Connect web interface with our account and go to the Users and Access tab. On the page click Keys. To be able to see the Keys tab your account has to have permission. We can create an API key for a specific purpose or an admin API key that can access all the App Store Connect API.</p>
+<figure><img src="./images/apiKey.png"
+         alt="api key page"/>
+</figure>
+
+<p>Click the plus icon next to the &lsquo;active&rsquo; text type a name for the key choose the roles that can access to key from the modal and click &lsquo;Generate&rsquo;. After that key will be created and listed.</p>
+<h3 id="download-private-key">Download Private Key</h3>
+<p>Once the API Key is generated we will download the Private Key. The key is usually in the .p8 format. Some somethings are important to keep in mind whilst dealing with the private key.</p>
+<ul>
+<li>
+<p>The private key can be downloaded only once. Make sure to keep it secure once downloaded.</p>
+</li>
+<li>
+<p>The private key never expires and is used to work as long as it&rsquo;s valid even if it&rsquo;s compromised so if you think that your key is not safe anymore, revoke it from App Store Connect as soon as possible and get a new key.</p>
+</li>
+</ul>
+<h3 id="copy-your-issuer-and-api-key-id">Copy Your Issuer and API Key ID</h3>
+<p>The last step before creating the JTW token is copying your issuer ID and API key ID which you can find on the Users&amp;Access page.</p>
+<h3 id="create-jwt-token">Create JWT Token</h3>
+<p>As mentioned earlier, JWT is used to generate the token that has been used by the App Store Connect API. The process of creating a token requires the following steps:</p>
+<ul>
+<li>
+<p><strong>IssuerID:</strong> The ID copied from the User&amp;Access page.</p>
+</li>
+<li>
+<p><strong>Private Key:</strong> Key downloaded in .p8 format.</p>
+</li>
+<li>
+<p><strong>Expiration Time:</strong> 20 min maximum, the token cannot be valid for more than 20 minutes so we have to make sure that, we will create a new token before it expires.</p>
+</li>
+<li>
+<p><strong>Audience:</strong> This is constant with API version value usually &lsquo;applestoreconnect-v1&rsquo;</p>
+</li>
+<li>
+<p><strong>Algorithm:</strong> The JWT algorithm required to create tokens e.g ES256</p>
+</li>
+</ul>
+<p>Once we have all the necessary details, we will be able to create a JWT token using the desired language. I am going to use Node.js for this process.</p>
+<p>Run these commands in order:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>mkdir appStoreToken
+</span></span><span style="display:flex;"><span>cd appStoreToken
+</span></span><span style="display:flex;"><span>npm init -y
+</span></span><span style="display:flex;"><span>npm i jsonwebtoken
+</span></span><span style="display:flex;"><span>touch index.js
+</span></span></code></pre></div><p>Paste this code into your index.js file, replace the necessary information with your information, and save.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;fs&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">jwt</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;jsonwebtoken&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">privateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#e6db74">&#34;yourPrivateKey.p8&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">apiKeyId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Your API Key ID&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">issuerId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Your Issuer ID&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">now</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">round</span>(<span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">getTime</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>); <span style="color:#75715e">// Notice the /1000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">nowPlus20</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">now</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1199</span>; <span style="color:#75715e">// 1200 === 20 minutes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">payload</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">iss</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">issuerId</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exp</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">nowPlus20</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">aud</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;appstoreconnect-v1&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">signOptions</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">algorithm</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ES256&#34;</span>, 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">header</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alg</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ES256&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">kid</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">apiKeyId</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">typ</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;JWT&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">signOptions</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;@token: &#34;</span>, <span style="color:#a6e22e">token</span>);
+</span></span></code></pre></div><p>and lastly, run the command below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>node index.js
+</span></span></code></pre></div><p>This will return a long token that we can use to access an App Store Connect API, we also need to create another token if we want to continue using API after 20 minutes.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post, you learned how the create a JWT token for the App Store Connect API using Node.js. This is a critical step in authenticating your requests to the API. In future posts, I will try to explore the other ways you can use the App Store Connect API. Thank you for your reading.</p>
+<p><a href="https://cagatayturkan.com/blog-tr/appstore-connect-api-ile-jwt-token-nasil-olusturulur/">Read this article in Turkish</a></p>
+
+      </span>
+    </article>
+  </div>
+
+      </main>
+    </div>
+    <footer>
+      <div class="flex flex-col justify-center p-10">
+  
+  <p class="text-center text-slate-700 dark:text-slate-400">
+    &copy;
+    2024
+    Çağatay Türkan
+  </p>
+
+  
+  
+  
+  
+  <p class="text-center text-sm text-slate-700 dark:text-slate-400">
+    Published with <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://github.com/chrede88/qubt" target="_blank" rel="noopener noreferrer">Qubt</a>
+  </p>
+</div>
+
+    </footer>
+  </body>
+</html>
