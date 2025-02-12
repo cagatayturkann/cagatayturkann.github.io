@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Commands on Çağatay Türkan</title>
+    <link>//localhost:1313/tr/tags/commands/</link>
+    <description>Recent content in Commands on Çağatay Türkan</description>
+    <generator>Hugo</generator>
+    <language>tr</language>
+    <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tr/tags/commands/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Linux Commands - Part 1</title>
+      <link>//localhost:1313/tr/blog/linux/linux-temel-komutlar%C4%B1/</link>
+      <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/tr/blog/linux/linux-temel-komutlar%C4%B1/</guid>
+      <description>In this article series, we will explore the most commonly used Linux commands that every developer should know. This first part covers 20 essential commands that will help you navigate and manage your Linux system effectively.</description>
+    </item>
+  </channel>
+</rss>

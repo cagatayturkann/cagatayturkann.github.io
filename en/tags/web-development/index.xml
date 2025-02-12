@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Development on Çağatay Türkan</title>
+    <link>//localhost:1313/en/tags/web-development/</link>
+    <description>Recent content in Web Development on Çağatay Türkan</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 08 Feb 2025 23:19:00 +0300</lastBuildDate>
+    <atom:link href="//localhost:1313/en/tags/web-development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding TypeScript - Part 1: The Basics</title>
+      <link>//localhost:1313/en/blog/typescript-series/understanding-typescript-part1/</link>
+      <pubDate>Sat, 08 Feb 2025 23:19:00 +0300</pubDate>
+      <guid>//localhost:1313/en/blog/typescript-series/understanding-typescript-part1/</guid>
+      <description>TypeScript is a powerful superset of JavaScript that adds static typing to the language. In this article series, we&amp;rsquo;ll explore TypeScript from basics to advanced concepts, starting with fundamental types and type inference.</description>
+    </item>
+  </channel>
+</rss>
