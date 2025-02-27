@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <!-- Background (extended) -->
+  <rect width="1200" height="700" fill="#1a1b26"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2f3240" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="700" fill="url(#grid)"/>
+  
+  <!-- Code Editor Window -->
+  <g transform="translate(100, 50)">
+    <!-- Editor Background -->
+    <rect width="1000" height="460" rx="10" fill="#282a36"/>
+    
+    <!-- Editor Header -->
+    <rect width="1000" height="30" rx="10" fill="#44475a"/>
+    <circle cx="20" cy="15" r="6" fill="#ff5555"/>
+    <circle cx="40" cy="15" r="6" fill="#ffb86c"/>
+    <circle cx="60" cy="15" r="6" fill="#50fa7b"/>
+    
+    <!-- TypeScript Code -->
+    <text x="20" y="60" fill="#6272a4" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">// Node.js JWT and Google Authentication Service</tspan>
+    </text>
+    <text x="20" y="90" fill="#6272a4" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">// A TypeScript implementation for secure authentication</tspan>
+    </text>
+    <text x="20" y="120" fill="#ff79c6" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">interface</tspan>
+      <tspan dx="5" fill="#50fa7b">AuthConfig</tspan>
+      <tspan fill="#f8f8f2"> {</tspan>
+    </text>
+    <text x="40" y="150" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">jwtSecret: string;</tspan>
+    </text>
+    <text x="40" y="180" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">googleClientId: string;</tspan>
+    </text>
+    <text x="40" y="210" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">googleClientSecret: string;</tspan>
+    </text>
+    <text x="40" y="240" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">expiresIn: string;</tspan>
+    </text>
+    <text x="20" y="270" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">}</tspan>
+    </text>
+    <text x="20" y="300" fill="#ff79c6" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">class</tspan>
+      <tspan dx="5" fill="#50fa7b">AuthService</tspan>
+      <tspan fill="#f8f8f2"> {</tspan>
+    </text>
+    <text x="40" y="330" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">private readonly config: AuthConfig;</tspan>
+    </text>
+    <text x="40" y="360" fill="#ff79c6" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">public</tspan>
+      <tspan dx="5" fill="#50fa7b">generateToken</tspan>
+      <tspan fill="#f8f8f2">(userId: string): string {</tspan>
+    </text>
+    <text x="60" y="390" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="60" dy="0">return jwt.sign({ userId }, this.config.jwtSecret, { expiresIn: this.config.expiresIn });</tspan>
+    </text>
+    <text x="40" y="420" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">}</tspan>
+    </text>
+    <text x="20" y="450" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">}</tspan>
+    </text>
+  </g>
+  
+  <!-- Title - EXACT SAME POSITION -->
+  <text x="600" y="585" fill="#f8f8f2" font-family="Inter, Arial, sans-serif" font-size="56" text-anchor="middle" font-weight="bold">
+    TypeScript'i Anlamak
+  </text>
+  
+  <!-- Subtitle - EXACT SAME POSITION -->
+  <text x="600" y="635" fill="#6272a4" font-family="Inter, Arial, sans-serif" font-size="28" text-anchor="middle">
+    Örnek Uygulama - Bölüm 9
+  </text>
+</svg>

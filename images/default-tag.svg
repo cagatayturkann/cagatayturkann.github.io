@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="600" fill="#1F2937"/>
+    <g transform="translate(200,100)">
+        <!-- Tag Background -->
+        <path d="M20 20L300 20L380 300L20 300Z" fill="#374151"/>
+        
+        <!-- Tag Hole -->
+        <circle cx="80" cy="80" r="30" fill="#4B5563"/>
+        <circle cx="80" cy="80" r="15" fill="#1F2937"/>
+        
+        <!-- Tag Lines -->
+        <rect x="140" y="120" width="180" height="20" rx="4" fill="#DC2626"/>
+        <rect x="140" y="160" width="140" height="20" rx="4" fill="#9CA3AF"/>
+        <rect x="140" y="200" width="160" height="20" rx="4" fill="#DC2626"/>
+    </g>
+</svg> 

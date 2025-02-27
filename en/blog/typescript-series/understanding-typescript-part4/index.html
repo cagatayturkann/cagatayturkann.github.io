@@ -1,0 +1,467 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no,maximum-scale=1"><title>Understanding TypeScript - Part 4: Interfaces - Çağatay Türkan
+</title><meta name=keywords content="SEO keywords"><meta name=description content="SEO description"><link rel=canonical href=/en/blog/typescript-series/understanding-typescript-part4/><link rel=icon href="/favicon.ico?v=1740683528" type=image/x-icon><link rel=stylesheet href=/css/app.min.2c82ed34ecb31b9db586f6dcf7743d5b1a2d33bdfda049a1e761623f8e5a5f87.css integrity="sha256-LILtNOyzG521hvbc93Q9WxotM739oEmh52FiP45aX4c=" crossorigin=anonymous><script src=/js/main.23cd0c7d837263b9eaeb96ee2d9ccfa2969daa3fa00fa1c1fe8701a9b87251a1.js integrity="sha256-I80MfYNyY7nq65buLZzPopadqj+gD6HB/ocBqbhyUaE=" crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/alpinejs@3.13.10/dist/cdn.min.js></script><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin=anonymous referrerpolicy=no-referrer><script async src="https://www.googletagmanager.com/gtag/js?id="></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NRES0X4BGY")</script></head><body><div class="mx-auto max-w-[calc(120rem)]
+min-h-screen
+2xl:px-[calc(16rem)]
+xl:px-24
+md:px-8
+px-4"><div x-data="{ openMenu: false }" class=relative><nav class="flex flex-1 flex-col lg:flex-row items-center justify-between"><a href=/><img src=/images/author.jpeg alt="site logo" class="w-16 h-16 my-5 p-1 bg-gray-100 rounded-full cursor-pointer hover:scale-110"></a><div class="hidden lg:block" :class="{'hidden': !openMenu}"><ul class="flex flex-col lg:flex-row justify-end mt-2 sm:mt-5 mb-5 pb-2 font-light text-xl lg:text-2xl gap-5 lg:gap-1 text-center"><li><a class="px-5 lg:px-10 py-3 font-light hover:border-b-2 hover:border-red-500" href=/en/>Home</a></li><li><a class="px-5 lg:px-10 py-3 font-light hover:border-b-2 hover:border-red-500" href=/en/categories/>Categories</a></li><li><a class="px-5 lg:px-10 py-3 font-light hover:border-b-2 hover:border-red-500" href=/en/tags/>Tags</a></li><li><a class="px-5 lg:px-10 py-3 font-light hover:border-b-2 hover:border-red-500" href=/en/about/>About</a></li><li class="flex items-center gap-2"><a href=/tr/blog/typescript-serisi/typescripti-anlamak-bolum4/ class="text-gray-500 hover:text-gray-300 text-lg">🇹🇷 TR</a>
+<span class=text-gray-600>|</span></li></ul></div></nav><div class="absolute top-8 right-5 flex items-center lg:hidden"><button @click="openMenu = !openMenu" type=button class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-800 hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls=mobile-menu aria-expanded=openMenu><svg x-show="!openMenu" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg x-show="openMenu" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button></div></div><header class="flex flex-col w-full items-center justify-center text-white pt-8 pb-8"><div class=w-full><div class="flex flex-1 flex-row justify-between"><h2 class="w-full text-center text-3xl sm:text-5xl font-crimson font-bold tracking-tight text-gray-300"><a href=/>Çağatay Türkan</a></h2></div><p class="w-full text-center pl-1 pb-4 sm:pt-3 sm:pb-0 font-crimson font-normal text-xl sm:text-2xl leading-8 text-gray-500">Trust me! I am an Engineer.</p></div><div class="flex justify-center w-full max-w-4xl mx-auto"><div class="flex justify-between w-32 px-12 mt-3"><a href=https://www.linkedin.com/in/cagatayturkann/ target=_blank rel="noopener noreferrer" class="text-gray-500 hover:text-gray-100 transition-colors duration-200"><i class="fab fa-linkedin text-2xl"></i>
+</a><a href=https://github.com/cagatayturkann target=_blank rel="noopener noreferrer" class="text-gray-500 hover:text-gray-100 transition-colors duration-200"><i class="fab fa-github text-2xl"></i>
+</a><a href=https://www.instagram.com/cagatayturkann/ target=_blank rel="noopener noreferrer" class="text-gray-500 hover:text-gray-100 transition-colors duration-200"><i class="fab fa-instagram text-2xl"></i>
+</a><a href=https://x.com/cagatayturkann target=_blank rel="noopener noreferrer" class="text-gray-500 hover:text-gray-100 transition-colors duration-200"><i class="fab fa-x-twitter text-2xl"></i>
+</a><a href=https://facebook.com/cagatayturkann target=_blank rel="noopener noreferrer" class="text-gray-500 hover:text-gray-100 transition-colors duration-200"><i class="fab fa-facebook text-2xl"></i></a></div></div><div class="relative w-9/12 lg:w-1/2 h-12 my-5"><form action=/en/search method=get><input class="bg-gray-800 placeholder:italic placeholder:text-gray-600 w-full h-12 rounded-full mt-1 pl-5 pr-5 border border-gray-800 text-gray-100" placeholder='Input Keywords...' type=text name=q id=search-input>
+<button type=submit class="absolute inset-y-2 right-1 w-28 h-10 font-light bg-gray-900 hover:bg-red-500 text-gray-500 hover:text-gray-100 rounded-full cursor-pointer">
+Search</button></form></div><div class="w-full flex flex-row justify-start text-gray-500 text-lg px-1 border-l-4 border-l-red-500"><ul class="flex flex-row gap-x-2"><li><a href=/ class=hover:text-gray-100>Home</a></li><li>>&nbsp;&nbsp;<a href=/en/blog/typescript-series/understanding-typescript-part4/ class=hover:text-gray-100>Understanding TypeScript - Part 4: Interfaces</a></li></ul></div><div class="w-full h-2 border-b border-b-gray-600/50 border-dashed font-light text-gray-300"></div></header><div class="flex flex-col overflow-hidden
+xl:px-0
+lg:flex-row lg:space-x-8"><main class="w-full overflow-hidden"><article class=single-article><div class="group relative"><h1 class="text-3xl font-medium leading-10 text-gray-400 hover:text-gray-100"><a href=/en/blog/typescript-series/understanding-typescript-part4/>Understanding TypeScript - Part 4: Interfaces</a></h1><div class="flex justify-between items-center"><time class="flex items-center py-2 text-xl text-gray-600">2025-02-12 16:51
+&nbsp;&nbsp;|&nbsp;&nbsp;10 minute read</time><div class="language-switch flex items-center space-x-2 text-gray-500 hover:text-gray-300"><a href=/tr/blog/typescript-serisi/typescripti-anlamak-bolum4/ class="flex items-center space-x-1"><span>🇹🇷</span>
+<span class=text-sm>Türkçe</span></a></div></div><div class=my-6><img src=/en/blog/typescript-series/understanding-typescript-part4/images/cover.svg alt="Understanding TypeScript - Part 4: Interfaces" class="w-full rounded-lg shadow-lg"></div><div class="mt-1 lg:pb-10 px-2 overflow-hidden break-words article-body"><div class=text-gray-500><style>.article-body h1{font-size:36px;font-weight:700;margin:1.5rem 0 1rem;color:#9ca3af}.article-body h2{font-size:30px;font-weight:600;margin:1.25rem 0 .75rem;color:#9ca3af}.article-body h3{font-size:26px;font-weight:500;margin:1rem 0 .5rem;color:#9ca3af}.article-body p{font-size:20px;line-height:1.8;margin:.75rem 0}.article-body ul,.article-body ol{margin:.75rem 0;padding-left:1.5rem}.article-body li{font-size:20px;line-height:1.8}.article-body strong{font-weight:600;color:#d1d5db}.article-body pre{background-color:#111827;font-size:.875rem;padding:1rem;border-radius:.375rem}</style><p>Hello! In this part of our TypeScript series, we will examine interfaces in detail, one of the most powerful features of the type system. We will learn what interfaces are, why we should use them, and how they provide benefits in real-world applications.</p><h2 id=what-is-an-interface-and-why-should-we-use-it>What is an Interface and Why Should We Use It?</h2><p>Interfaces are a feature in TypeScript that allows us to define the structure of objects. To explain it in simple terms:</p><p>&ldquo;Think of it like drawing a construction plan. In this plan, you have details like how many floors the building will have, room dimensions, window locations, etc. An interface is just like that - it draws a &lsquo;plan&rsquo; for an object. We determine in advance what properties it will have and what types these properties will be.&rdquo;</p><p>Here&rsquo;s a simple example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Simple interface definition
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>User</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Required properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Unique number of the user
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Name of the user
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Email address
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Optional properties (marked with ?)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>phone?</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Phone number (optional)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>age?</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Age information (optional)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Using the interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newUser</span>: <span style=color:#66d9ef>User</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John Smith&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;john@example.com&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// phone and age are optional, so we don&#39;t have to write them
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// TypeScript protects us here
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>invalidUser</span>: <span style=color:#66d9ef>User</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;1&#39;</span>, <span style=color:#75715e>// Error! string value cannot be assigned to number type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Michael&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>true</span>, <span style=color:#75715e>// Error! boolean value cannot be assigned to string type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span></code></pre></div><h3 id=advantages-of-using-interfaces>Advantages of Using Interfaces</h3><ol><li><strong>Code Safety:</strong></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Function defined with interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>updateUser</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>user</span>: <span style=color:#66d9ef>User</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Thanks to TypeScript, we&#39;re sure about the structure of the user object
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Updating </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74>...`</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... update operations
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// This works
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>updateUser</span>(<span style=color:#ae81ff>1</span>, {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;john@example.com&#39;</span>,
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// This gives an error - missing and incorrect properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>updateUser</span>(<span style=color:#ae81ff>1</span>, {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John&#39;</span>, <span style=color:#75715e>// Error! should be &#39;name&#39; instead of &#39;firstName&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>});
+</span></span></code></pre></div><ol start=2><li><p><strong>Code Completion:</strong>
+Interfaces enhance your IDE&rsquo;s code completion feature. When accessing an object&rsquo;s properties, the IDE shows you all available properties.</p></li><li><p><strong>Documentation:</strong>
+Interfaces also serve as documentation. Other developers reading your code can quickly understand the structure of an object.</p></li></ol><h2 id=interface-vs-type-understanding-the-differences>Interface vs Type: Understanding the Differences</h2><p>Let&rsquo;s examine the differences between Interface and Type with real examples:</p><h3 id=1-declaration-merging>1. Declaration Merging</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Declaration merging is possible with interfaces
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Car</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>brand</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Car</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// We can add new properties with the same name
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>tesla</span>: <span style=color:#66d9ef>Car</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>brand</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Tesla&#39;</span>, <span style=color:#75715e>// Properties from both
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>model</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Model 3&#39;</span>, <span style=color:#75715e>// interfaces are required
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// This is not possible with Type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Bicycle</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>brand</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Error! Identifier &#39;Bicycle&#39; has already been declared
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Bicycle</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>This feature is especially useful when developing libraries. Users can add new properties to existing interfaces.</p><h3 id=2-extends-and-implements>2. Extends and Implements</h3><p>Interfaces are very useful in object-oriented programming:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Base interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Animal</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>species</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>makeSound</span>()<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Deriving from interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Cat</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Animal</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>hasPaws</span>: <span style=color:#66d9ef>boolean</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>canClimb</span>: <span style=color:#66d9ef>boolean</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage in classes
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TabbyCat</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>Cat</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// We must implement all properties and methods
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>species</span>: <span style=color:#66d9ef>string</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Cat&#39;</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>hasPaws</span>: <span style=color:#66d9ef>boolean</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>canClimb</span>: <span style=color:#66d9ef>boolean</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>name</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>makeSound() {</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Meow!&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=interface-methods-and-properties>Interface Methods and Properties</h2><p>Interfaces can define not only data structure but also object behaviors. Let&rsquo;s proceed with a real example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Interface for product management in an e-commerce system
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>ProductManagement</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Basic CRUD operations
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>addProduct</span>(<span style=color:#a6e22e>product</span>: <span style=color:#66d9ef>Product</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>boolean</span>&gt;;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>updateProduct</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>product</span>: <span style=color:#66d9ef>Product</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>boolean</span>&gt;;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>deleteProduct</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>boolean</span>&gt;;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getProduct</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>Product</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>null</span>&gt;;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Stock management methods
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>updateStock</span>(<span style=color:#a6e22e>productId</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>quantity</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>void</span>&gt;;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>checkStock</span>(<span style=color:#a6e22e>productId</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>number</span>&gt;;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Statistics methods
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>generateSalesReport</span>(<span style=color:#a6e22e>start</span>: <span style=color:#66d9ef>Date</span>, <span style=color:#a6e22e>end</span>: <span style=color:#66d9ef>Date</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>SalesReport</span>&gt;;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// A class using this interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PostgreSQLProductManagement</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>ProductManagement</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>db</span>: <span style=color:#66d9ef>Database</span>) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>addProduct</span>(<span style=color:#a6e22e>product</span>: <span style=color:#66d9ef>Product</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>boolean</span>&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>query</span>(<span style=color:#e6db74>&#39;INSERT INTO products (id, name, price, stock) VALUES ($1, $2, $3, $4)&#39;</span>, [
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>id</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>name</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>price</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>stock</span>,
+</span></span><span style=display:flex><span>      ]);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#39;Error adding product:&#39;</span>, <span style=color:#a6e22e>error</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Implementation of other methods...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=readonly-and-optional-properties>Readonly and Optional Properties</h3><p>We can make some properties in interfaces readonly or optional. Here&rsquo;s a real scenario:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Interface for user profile
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>UserProfile</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Readonly properties (cannot be changed)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// User ID never changes
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>registrationDate</span>: <span style=color:#66d9ef>Date</span>; <span style=color:#75715e>// Registration date cannot be changed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Required properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Email address
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Username
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Optional properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>phone?</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Phone number
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>address</span><span style=color:#f92672>?:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Address information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>city</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>district</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>postalCode?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>profilePicture?</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Profile picture URL
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Social media information (all optional)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>socialMedia</span><span style=color:#f92672>?:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>twitter?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>linkedin?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>github?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage example
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newProfile</span>: <span style=color:#66d9ef>UserProfile</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;usr_123&#39;</span>, <span style=color:#75715e>// readonly, can only be assigned during initialization
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>registrationDate</span>: <span style=color:#66d9ef>new</span> Date(), <span style=color:#75715e>// readonly, can only be assigned during initialization
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;john@example.com&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John Smith&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// We don&#39;t have to add optional fields
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// INCORRECT USAGE - cannot modify readonly properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>newProfile</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;usr_456&#39;</span>; <span style=color:#75715e>// Error! readonly property cannot be modified
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>newProfile</span>.<span style=color:#a6e22e>registrationDate</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date(); <span style=color:#75715e>// Error! readonly property cannot be modified
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// We can add optional properties later
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>newProfile</span>.<span style=color:#a6e22e>phone</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;555-0123&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>newProfile</span>.<span style=color:#a6e22e>address</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>city</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;New York&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>district</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Manhattan&#39;</span>,
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h2 id=generic-interfaces>Generic Interfaces</h2><p>Generics make interfaces more flexible and reusable. For example, a generic interface for API responses:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Generic API response interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>APIResponse</span>&lt;<span style=color:#f92672>T</span>&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>success</span>: <span style=color:#66d9ef>boolean</span>; <span style=color:#75715e>// Is the operation successful?
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>T</span>; <span style=color:#75715e>// Generic data type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>timestamp</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Operation time
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>statusCode</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// HTTP status code
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>message?</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Optional message
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>errors?</span>: <span style=color:#66d9ef>string</span>[]; <span style=color:#75715e>// Error messages if any
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage with different data types
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>User</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Product</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>price</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// API response for user list
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>usersResponse</span>: <span style=color:#66d9ef>APIResponse</span>&lt;<span style=color:#f92672>User</span><span style=color:#960050;background-color:#1e0010>[]</span>&gt; <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>success</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>data</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>    { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John&#39;</span>, <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;john@example.com&#39;</span> },
+</span></span><span style=display:flex><span>    { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>2</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Michael&#39;</span>, <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;michael@example.com&#39;</span> },
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>timestamp</span>: <span style=color:#66d9ef>Date.now</span>(),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>statusCode</span>: <span style=color:#66d9ef>200</span>,
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// API response for a single product
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>productResponse</span>: <span style=color:#66d9ef>APIResponse</span>&lt;<span style=color:#f92672>Product</span>&gt; <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>success</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>data</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>0</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>, <span style=color:#a6e22e>price</span>: <span style=color:#66d9ef>0</span> }, <span style=color:#75715e>// Empty product
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>timestamp</span>: <span style=color:#66d9ef>Date.now</span>(),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>statusCode</span>: <span style=color:#66d9ef>404</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Product not found&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>errors</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;Product with specified ID does not exist&#39;</span>],
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h2 id=interface-inheritance>Interface Inheritance</h2><p>Interfaces can inherit from each other. This feature prevents code repetition and helps us create a modular structure:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Basic entity properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Entity</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Unique identifier
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>Date</span>; <span style=color:#75715e>// Creation date
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>Date</span>; <span style=color:#75715e>// Last update date
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>deleted</span>: <span style=color:#66d9ef>boolean</span>; <span style=color:#75715e>// Deletion status
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Basic person information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Person</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Entity</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>phone?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Student information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Student</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Person</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>studentId</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>department</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>year</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>courses</span>: <span style=color:#66d9ef>string</span>[];
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gpa?</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Teacher information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Teacher</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Person</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>employeeId</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>subject</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>coursesTaught</span>: <span style=color:#66d9ef>string</span>[];
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>salary</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Usage example
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newStudent</span>: <span style=color:#66d9ef>Student</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Properties from Entity
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;std_123&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>new</span> Date(),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>new</span> Date(),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>deleted</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Properties from Person
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lastName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Smith&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;john@school.edu&#39;</span>,
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Student-specific properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>studentId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;2024001&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>department</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Computer Engineering&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>year</span>: <span style=color:#66d9ef>2</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>courses</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;Algorithms&#39;</span>, <span style=color:#e6db74>&#39;Data Structures&#39;</span>, <span style=color:#e6db74>&#39;TypeScript 101&#39;</span>],
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h2 id=common-use-cases-for-interfaces>Common Use Cases for Interfaces</h2><p>Interfaces appear in many areas of software development. Here are the most common use cases:</p><h3 id=1-api-communication>1. API Communication</h3><p>We use interfaces to define incoming and outgoing data structures when working with APIs:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Structure of user data coming from API
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>UserResponse</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;admin&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;user&#39;</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lastLogin?</span>: <span style=color:#66d9ef>Date</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Login information to be sent to API
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>LoginCredentials</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>password</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>remember?</span>: <span style=color:#66d9ef>boolean</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=2-database-operations>2. Database Operations</h3><p>We use interfaces to model table structures and query results in database operations:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Product</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Product unique number
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Product name
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>price</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Product price
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>stock</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Stock quantity
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>category</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Product category
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=3-form-management>3. Form Management</h3><p>Interfaces help us when defining form data structure and validation rules:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>RegistrationForm</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// User email
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>password</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Password
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>passwordConfirm</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Password confirmation
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>username</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Username
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=4-configuration-management>4. Configuration Management</h3><p>We use interfaces when defining application settings and configurations:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>AppSettings</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiUrl</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// API server address
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>maxAttempts</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Maximum number of attempts
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>timeout</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Timeout duration
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>debug</span>: <span style=color:#66d9ef>boolean</span>; <span style=color:#75715e>// Debug mode on/off
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=5-data-models>5. Data Models</h3><p>We use interfaces when defining basic data structures in our application:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Order</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Order number
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>customerId</span>: <span style=color:#66d9ef>string</span>; <span style=color:#75715e>// Customer number
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>products</span>: <span style=color:#66d9ef>string</span>[]; <span style=color:#75715e>// Products in order
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>totalAmount</span>: <span style=color:#66d9ef>number</span>; <span style=color:#75715e>// Total amount
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;pending&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;confirmed&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;cancelled&#39;</span>; <span style=color:#75715e>// Order status
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><p>These use cases show how important interfaces are in terms of type safety and code organization. In each area, interfaces help make our code safer and easier to maintain.</p><h2 id=best-practices-and-tips>Best Practices and Tips</h2><p>There are some important points to consider when using TypeScript interfaces. By applying these practices, we can write more readable and maintainable code.</p><h3 id=1-naming-conventions>1. Naming Conventions</h3><p>Interface names should clearly indicate what they do and follow certain standards:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// ✅ Good Naming Examples
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>UserService</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getUser</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>User</span>&gt;;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>ProductRepository</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>updateStock</span>(<span style=color:#a6e22e>productId</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>quantity</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ❌ Naming Conventions to Avoid
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>IUser</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Don&#39;t use &#39;I&#39; prefix
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>dataManager</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Use PascalCase
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>DATA_SERVICE</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Don&#39;t use UPPERCASE
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=2-single-responsibility-principle>2. Single Responsibility Principle</h3><p>Each interface should focus on a single task and do it well:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// ✅ Well-Designed Interfaces
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>IdentityInformation</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ssn</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>passportNo?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>ContactInformation</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>phone?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>address</span><span style=color:#f92672>?:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>state</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>city</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Combine when needed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>User</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>IdentityInformation</span>, <span style=color:#a6e22e>ContactInformation</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ❌ Situation to Avoid: Putting everything in one interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>HugeInterface</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Identity information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ssn</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Contact information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>phone</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Address information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>state</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>city</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// User information
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Other information...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// ... and many more properties
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=3-adding-descriptive-comments>3. Adding Descriptive Comments</h3><p>Add comments that clearly indicate how interfaces should be used:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>/**
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * Card information to be used during payment process.
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * This interface should only be used during payment processing and
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * sensitive information should be cleared from memory after the transaction.
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>PaymentInformation</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** Amount to be paid (in USD, with cent precision) */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amount</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** 16-digit card number */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cardNumber</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** Expiration date in MM/YY format (example: 12/25) */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>expirationDate</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** 3-digit security code on the back of the card */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>securityCode</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=4-using-optional-properties-correctly>4. Using Optional Properties Correctly</h3><p>Be careful when using optional properties and document them:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>UserProfile</span> {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Required fields
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Optional fields - explain why they&#39;re optional
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>/** User may choose not to provide a phone number */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>phone?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** Default will be used if no profile photo is uploaded */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>profilePhotoUrl?</span>: <span style=color:#66d9ef>string</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>/** User may not have given location permission yet */</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>location</span><span style=color:#f92672>?:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lat</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lng</span>: <span style=color:#66d9ef>number</span>;
+</span></span><span style=display:flex><span>  };
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=conclusion>Conclusion</h2><p>Interfaces are one of the most powerful features of TypeScript, and when used correctly, they:</p><ul><li>Make your code more readable</li><li>Provide type safety</li><li>Make maintenance easier</li><li>Improve team collaboration</li><li>Serve as documentation</li></ul><p>The examples and best practices we&rsquo;ve seen in this article will guide you in your daily TypeScript development. See you in the next article.</p><p>Feel free to leave comments if you have any questions. Happy coding! 🚀</p></div></div></div><div class="my-10 py-5 border-t border-dashed border-t-white/10 text-xl text-gray-600"></div></article></main><aside id=sidebar class=aside-container><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935.0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+About</div><img src=/images/bg.jpg class="w-80 self-center rounded-lg" alt=Logo><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25.0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424.0 00-1.123-.08m-5.801.0c-.065.21-.1.433-.1.664.0.414.336.75.75.75h4.5a.75.75.0 00.75-.75 2.25 2.25.0 00-.1-.664m-5.8.0A2.251 2.251.0 0113.5 2.25H15c1.012.0 1.867.668 2.15 1.586m-5.8.0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621.0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621.0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+Latest Post</div><ul class=text-lg><li class="leading-10 line-clamp-1 mb-3 font-light border-b border-b-white/10 border-dashed"><a href=/en/blog/typescript-series/understanding-typescript-part9/ class="py-5 hover:text-gray-300">Understanding TypeScript - Part 9: Sample Project</a></li><li class="leading-10 line-clamp-1 mb-3 font-light border-b border-b-white/10 border-dashed"><a href=/en/blog/typescript-series/understanding-typescript-part8/ class="py-5 hover:text-gray-300">Understanding TypeScript - Part 8: Type Narrowing</a></li><li class="leading-10 line-clamp-1 mb-3 font-light border-b border-b-white/10 border-dashed"><a href=/en/blog/typescript-series/understanding-typescript-part7/ class="py-5 hover:text-gray-300">Understanding TypeScript - Part 7: Generics</a></li><li class="leading-10 line-clamp-1 mb-3 font-light border-b border-b-white/10 border-dashed"><a href=/en/blog/typescript-series/understanding-typescript-part6/ class="py-5 hover:text-gray-300">Understanding TypeScript - Part 6: Classes</a></li><li class="leading-10 line-clamp-1 mb-3 font-light border-b border-b-white/10 border-dashed"><a href=/en/blog/typescript-series/understanding-typescript-part5/ class="py-5 hover:text-gray-300">Understanding TypeScript - Part 5: The TypeScript Compiler</a></li></ul><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621.0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125.0 012.25 10.875v-3.75zm12 1.5c0-.621.504-1.125 1.125-1.125h5.25c.621.0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125.0 01-1.125-1.125v-8.25zm-10.5 7.5c0-.621.504-1.125 1.125-1.125h5.25c.621.0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25A1.125 1.125.0 013.75 18.375v-2.25z"/></svg>
+Hot Categories</div><ul class="leading-10 text-lg"><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/typescript/ class=hover:text-gray-300>TypeScript <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">9</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/node.js/ class=hover:text-gray-300>Node.js <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">2</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/development/ class=hover:text-gray-300>Development <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/git/ class=hover:text-gray-300>Git <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/ios/ class=hover:text-gray-300>IOS <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/linux/ class=hover:text-gray-300>Linux <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-gray-900 border-dashed font-light"><a href=/en/categories/backend/ class=hover:text-gray-300>Backend <span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li></ul><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25.0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095.0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25.0 009.568 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/></svg>
+Top Tags</div><div class="flex flex-wrap gap-2 text-lg leading-8 pt-3 pl-1"><a href=/en/tags/typescript/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Typescript&nbsp;&nbsp;9</span></a>
+<a href=/en/tags/javascript/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Javascript&nbsp;&nbsp;3</span></a>
+<a href=/en/tags/nodejs/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Nodejs&nbsp;&nbsp;2</span></a>
+<a href=/en/tags/generics/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Generics&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/git/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Git&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/git-flow/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Git-Flow&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/jwt/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Jwt&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/linux/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Linux&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/microservices/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Microservices&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/classes/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Classes&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/compiler/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Compiler&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/functions/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Functions&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/interfaces/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Interfaces&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/oop/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Oop&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/terminal/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Terminal&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/type-guards/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Type-Guards&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/type-system/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Type-System&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/app-store/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">App-Store&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/configuration/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Configuration&nbsp;&nbsp;1</span></a>
+<a href=/en/tags/type-narrowing/><span class="inline-block p-0 bg-gray-800 hover:bg-gray-900 border border-gray-800 text-gray-500 hover:text-gray-300 font-light mb-1 px-5 rounded-full hover:scale-105">Type-Narrowing&nbsp;&nbsp;1</span></a></div><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25.0 01-2.247 2.118H6.622a2.25 2.25.0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621.0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621.0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+Archive Analytics</div><ul class="leading-10 text-lg font-light"><li class="mb-1 border-b border-b-white/10 border-dashed"><a href=/en/archives>Feb 2025<span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">11</span></a></li><li class="mb-1 border-b border-b-white/10 border-dashed"><a href=/en/archives>Jan 2025<span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-white/10 border-dashed"><a href=/en/archives>Mar 2024<span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-white/10 border-dashed"><a href=/en/archives>Nov 2023<span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li><li class="mb-1 border-b border-b-white/10 border-dashed"><a href=/en/archives>Jan 0001<span class="ml-2 px-2 bg-gray-800 rounded-full text-gray-500">1</span></a></li></ul><div class=aside-section-title><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5A2.25 2.25.0 0119.5 19.5h-15a2.25 2.25.0 01-2.25-2.25V6.75m19.5.0A2.25 2.25.0 0019.5 4.5h-15A2.25 2.25.0 002.25 6.75m19.5.0v.243a2.25 2.25.0 01-1.07 1.916l-7.5 4.615a2.25 2.25.0 01-2.36.0L3.32 8.91A2.25 2.25.0 012.25 6.994V6.75"/></svg>
+Contact</div><div class="flex flex-row gap-2">Email：cagatayturkann@gmail.com</div></aside></div></div></script></body></html>

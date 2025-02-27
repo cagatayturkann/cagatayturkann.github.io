@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#1a1b26"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2f3240" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Code Editor Window -->
+  <g transform="translate(100, 50)">
+    <!-- Editor Background -->
+    <rect width="1000" height="400" rx="10" fill="#282a36"/>
+    
+    <!-- Editor Header -->
+    <rect width="1000" height="30" rx="10" fill="#44475a"/>
+    <circle cx="20" cy="15" r="6" fill="#ff5555"/>
+    <circle cx="40" cy="15" r="6" fill="#ffb86c"/>
+    <circle cx="60" cy="15" r="6" fill="#50fa7b"/>
+    
+    <!-- TypeScript Code -->
+    <text x="20" y="60" fill="#6272a4" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">// TypeScript Obje ve Dizi Tipleri</tspan>
+    </text>
+    <text x="20" y="90" fill="#ff79c6" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">type</tspan>
+      <tspan dx="5" fill="#50fa7b">Person</tspan>
+      <tspan fill="#f8f8f2"> = {</tspan>
+    </text>
+    <text x="40" y="120" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">name: </tspan>
+      <tspan fill="#bd93f9">string</tspan>
+      <tspan fill="#f8f8f2">,</tspan>
+    </text>
+    <text x="40" y="150" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="40" dy="0">age: </tspan>
+      <tspan fill="#bd93f9">number</tspan>
+    </text>
+    <text x="20" y="180" fill="#f8f8f2" font-family="monospace" font-size="16">
+      <tspan x="20" dy="0">};</tspan>
+    </text>
+  </g>
+
+  <!-- Dark Gradient Background for Title Area -->
+  <defs>
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1b26;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#1a1b26;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#1a1b26;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="480" width="1200" height="150" fill="url(#titleGradient)"/>
+  
+  <!-- Title -->
+  <text x="600" y="540" fill="#f8f8f2" font-family="Inter, Arial, sans-serif" font-size="56" text-anchor="middle" font-weight="bold">
+    TypeScript'i Anlamak
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="590" fill="#6272a4" font-family="Inter, Arial, sans-serif" font-size="28" text-anchor="middle">
+    Obje ve Dizi Tipleri - Bölüm 3
+  </text>
+</svg>
