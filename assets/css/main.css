@@ -684,6 +684,33 @@ section,
 /*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
+.skills .skill-category {
+  margin-bottom: 30px;
+}
+
+.skills .skill-category h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+
+.skills .skill-category ul li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.skills .skill-category ul li i {
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.skills .skill-category ul li:last-child {
+  margin-bottom: 0;
+}
+
 .skills .progress {
   height: 60px;
   display: block;
@@ -946,6 +973,10 @@ section,
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
+.testimonials {
+  padding: 60px 0;
+}
+
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
   overflow: hidden;
@@ -1270,6 +1301,109 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+
+
+.blog .portfolio-item {
+  margin-bottom: 30px;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.blog .portfolio-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog .portfolio-content img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.blog .portfolio-content:hover img {
+  transform: scale(1.1);
+}
+
+.blog .portfolio-info {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.blog .portfolio-content:hover .portfolio-info {
+  bottom: 0;
+}
+
+.blog .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.blog .portfolio-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.blog .portfolio-info .details-link {
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.blog .portfolio-info .details-link:hover {
+  color: var(--accent-color);
+}
+
+/* Blog Slider */
+.blog-slider {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.blog-slider .swiper-slide {
+  height: auto;
+}
+
+.blog-slider .swiper-pagination {
+  bottom: 0;
+}
+
+.blog-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid var(--accent-color);
+}
+
+.blog-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}
+
+.blog-slider .portfolio-item {
+  height: 100%;
+}
+
+.blog-slider .portfolio-content {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .blog-slider .swiper-slide {
+    padding: 0 10px;
+  }
 }

@@ -1,82 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çağatay Türkan - Coming Soon</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4fafd;
-            color: #333;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #666;
-        }
-        .social-links {
-            margin-top: 2rem;
-        }
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-        .social-links a:hover {
-            color: #0077b5;
-        }
-        .blog-links {
-            margin-top: 2rem;
-        }
-        .blog-links a {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            margin: 0.5rem;
-            background-color: #fff;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .blog-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Çağatay Türkan - Computer Engineer & Back End Developer</title>
+    <meta
+      content="Computer Engineer and Back End Developer specializing in AI-powered solutions, chatbots, and high-performance APIs using Node.js"
+      name="description"
+    />
+    <meta
+      content="computer engineer, backend developer, software engineer, nodejs, ai, chatbot, api development, izmir"
+      name="keywords"
+    />
+
+    <!-- Favicons -->
+    <link href="assets/img/my-profile-img.jpg" rel="icon" />
+    <link href="assets/img/my-profile-img.jpg" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <!-- =======================================================
+  * Template Name: iPortfolio
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Updated: Jun 29 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
   </head>
-  <body>
-    <div class="container">
-        <h1>Çağatay Türkan</h1>
-        <p>My personal website is coming soon. Meanwhile, you can check out my blog:</p>
-        
-        <div class="blog-links">
-            <a href="https://cagatayturkan.com/blog/en/">Blog (English)</a>
-            <a href="https://cagatayturkan.com/blog/tr/">Blog (Türkçe)</a>
+
+  <body class="index-page">
+    <header id="header" class="header dark-background d-flex flex-column">
+      <i class="header-toggle d-xl-none bi bi-list"></i>
+
+      <div class="profile-img">
+        <img src="assets/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle" />
+      </div>
+
+      <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Çağatay Türkan</h1>
+      </a>
+
+      <div class="social-links text-center">
+        <a href="https://github.com/cagatayturkann" class="github"><i class="bi bi-github"></i></a>
+        <a href="https://linkedin.com/in/cagatayturkann" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="https://instagram.com/cagatayturkann" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com/cagatayturkann" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      </div>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li>
+            <a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a>
+          </li>
+          <li>
+            <a href="#about"><i class="bi bi-person navicon"></i> About</a>
+          </li>
+          <li>
+            <a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a>
+          </li>
+          <li>
+            <a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a>
+          </li>
+          <li>
+            <a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a>
+          </li>
+          <li>
+            <a href="https://cagatayturkan.com/blog/en/"><i class="bi bi-journal-text navicon"></i> Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <!-- Hero Section -->
+      <section id="hero" class="hero section dark-background">
+        <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="" />
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <h2>Çağatay Türkan</h2>
+          <p>
+            I'm a
+            <span class="typed" data-typed-items="Computer Engineer, Back End Developer, Software Engineer"
+              >Computer Engineer</span
+            >
+          </p>
+        </div>
+      </section>
+      <!-- /Hero Section -->
+
+      <!-- About Section -->
+      <section id="about" class="about section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>About</h2>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4 justify-content-center">
+            <div class="col-lg-4">
+              <img src="assets/img/my-profile-img.jpg" class="img-fluid" alt="" />
+            </div>
+            <div class="col-lg-8 content">
+              <h2>Computer Engineer / Back End Developer</h2>
+              <p class="fst-italic py-3">
+                As a Computer Engineer with 5 years of professional experience, I specialize in developing AI-powered
+                chatbot solutions and RESTful APIs. My expertise includes Node.js backend development, natural language
+                processing, and implementing custom AI solutions for business needs.
+              </p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Izmir, Turkey</span></li>
+                    <li>
+                      <i class="bi bi-chevron-right"></i> <strong>Website:</strong>
+                      <span>https://cagatayturkan.com</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul>
+                    <li>
+                      <i class="bi bi-chevron-right"></i> <strong>Degree:</strong>
+                      <span>Master's in Computer Engineering</span>
+                    </li>
+                    <li>
+                      <i class="bi bi-chevron-right"></i> <strong>Languages:</strong>
+                      <span>Turkish (Native), English (Fluent C1)</span>
+                    </li>
+                    <li>
+                      <i class="bi bi-chevron-right"></i> <strong>Military Status:</strong> <span>Completed</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="py-3">
+                With a strong foundation in computer engineering and extensive experience in AI technologies, I focus on
+                developing intelligent chatbot solutions and robust backend systems. My experience includes fine-tuning
+                AI models, implementing custom classification algorithms, and developing high-performance RESTful APIs
+                using Node.js and modern database technologies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /About Section -->
+
+      <!-- Stats Section -->
+      <!--
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Happy Clients</strong> <span>consequuntur quae</span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
+            </div>
+          </div>
+
         </div>
 
-        <div class="social-links">
-            <a href="https://github.com/cagatayturkann" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/cagatayturkann" target="_blank">LinkedIn</a>
-            <a href="https://twitter.com/cagatayturkann" target="_blank">Twitter</a>
+      </div>
+
+    </section>
+    -->
+      <!-- /Stats Section -->
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills section light-background">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Technical Skills</h2>
+          <p>Experienced in modern web technologies and software development practices</p>
         </div>
-    </div>
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="skill-category mb-4">
+                <h3>Programming & Development</h3>
+                <ul class="list-unstyled">
+                  <li><i class="bi bi-check2-circle"></i> JavaScript (Node.js, TypeScript)</li>
+                  <li><i class="bi bi-check2-circle"></i> Backend Frameworks (Express.js, Fastify)</li>
+                  <li><i class="bi bi-check2-circle"></i> Web Technologies (RESTful APIs)</li>
+                  <li><i class="bi bi-check2-circle"></i> Database Technologies (MongoDB, Redis, Weaviate)</li>
+                  <li><i class="bi bi-check2-circle"></i> Version Control (Git)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="skill-category mb-4">
+                <h3>Development Tools & Practices</h3>
+                <ul class="list-unstyled">
+                  <li><i class="bi bi-check2-circle"></i> CI/CD (Jenkins, GitLab CI/CD)</li>
+                  <li><i class="bi bi-check2-circle"></i> Testing (Jest, Selenium)</li>
+                  <li><i class="bi bi-check2-circle"></i> Project Management & Agile Methodologies</li>
+                  <li><i class="bi bi-check2-circle"></i> Technical Documentation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-lg-12">
+              <div class="skill-category">
+                <h3>Core Skills</h3>
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul class="list-unstyled">
+                      <li><i class="bi bi-check2-circle"></i> RESTful API Design</li>
+                      <li><i class="bi bi-check2-circle"></i> Microservices Architecture</li>
+                      <li><i class="bi bi-check2-circle"></i> Database Management</li>
+                      <li><i class="bi bi-check2-circle"></i> Hybrid Search Systems</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="list-unstyled">
+                      <li><i class="bi bi-check2-circle"></i> Leadership & Teamwork</li>
+                      <li><i class="bi bi-check2-circle"></i> Problem Solving</li>
+                      <li><i class="bi bi-check2-circle"></i> Critical Thinking</li>
+                      <li><i class="bi bi-check2-circle"></i> Effective Time Management</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume Section -->
+      <section id="resume" class="resume section">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Professional Experience</h2>
+          <p>My career journey and educational background</p>
+        </div>
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <div class="col-lg-6">
+              <h3 class="resume-title">Work Experience</h3>
+              <div class="resume-item">
+                <h4>Software Engineer, Junior</h4>
+                <h5>September 2023 - January 2024</h5>
+                <p><em>Dragon United States</em></p>
+                <ul>
+                  <li>
+                    Developed and maintained chatbot functionality for a Shopify-integrated application using Node.js
+                  </li>
+                  <li>Implemented a hybrid search mechanism using MongoDB and Weaviate vector databases</li>
+                  <li>Built and maintained Node.js-based RESTful API endpoints for chatbot operations</li>
+                  <li>Developed custom classification algorithms and implemented statistical analytics</li>
+                  <li>Fine-tuned OpenAI's ChatGPT models for specific business use cases</li>
+                </ul>
+              </div>
+              <div class="resume-item">
+                <h4>Software Engineer</h4>
+                <h5>April 2022 - September 2023</h5>
+                <p><em>Matriks Bilgi Dağıtım Hizmetleri A.Ş., Istanbul</em></p>
+                <ul>
+                  <li>Developed high-performance RESTful APIs using Node.js and FastAPI</li>
+                  <li>Designed and maintained APIs processing millions of requests daily</li>
+                  <li>Implemented data retrieval and caching mechanisms using various technologies</li>
+                  <li>Worked with MQTT for real-time data processing</li>
+                  <li>Automated deployment processes using GitLab CI/CD</li>
+                </ul>
+              </div>
+              <div class="resume-item">
+                <h4>Business Analyst</h4>
+                <h5>January 2019 - April 2021</h5>
+                <p><em>CBOT, Istanbul</em></p>
+                <ul>
+                  <li>Expanded customer base through successful chatbot implementations</li>
+                  <li>Contributed to CBOT's proprietary AI-powered chatbot platform development</li>
+                  <li>Designed and implemented solutions for order placement and payments</li>
+                  <li>Managed client relationships and project requirements throughout the lifecycle</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="resume-title">Education</h3>
+              <div class="resume-item">
+                <h4>Master's Degree in Computer Engineering</h4>
+                <h5>October 2019 - January 2021</h5>
+                <p><em>Beykent University, Istanbul</em></p>
+              </div>
+              <div class="resume-item">
+                <h4>Bachelor's Degree in Computer Engineering</h4>
+                <h5>October 2012 - June 2017</h5>
+                <p><em>Beykent University, Istanbul</em></p>
+              </div>
+
+              <h3 class="resume-title">Certifications</h3>
+              <div class="resume-item">
+                <h4>Full Stack Bootcamp: Loop Cyber Security and Network Technologies</h4>
+                <h5>January 2022 - March 2022</h5>
+                <p><em>Patika.dev Istanbul</em></p>
+                <p>Learned advanced JavaScript, Vue.js, React Native, and Express.js</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section id="portfolio" class="portfolio section light-background">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Portfolio</h2>
+          <p>My Recent Projects</p>
+        </div>
+
+        <div class="container">
+          <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-design">Design</li>
+            </ul>
+
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+              <!-- Tayfun Optik Project -->
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+                <div class="portfolio-content h-100">
+                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Tayfun Optik Website" />
+                  <div class="portfolio-info">
+                    <h4>Tayfun Optik Website</h4>
+                    <p>WordPress E-commerce Solution</p>
+                    <a
+                      href="assets/img/portfolio/app-1.jpg"
+                      title="Tayfun Optik"
+                      data-gallery="portfolio-gallery-web"
+                      class="glightbox preview-link"
+                      ><i class="bi bi-zoom-in"></i
+                    ></a>
+                    <a href="portfolio-details.html?project=tayfunoptik" title="More Details" class="details-link"
+                      ><i class="bi bi-link-45deg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ecem Çetin Optik Project -->
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+                <div class="portfolio-content h-100">
+                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Ecem Çetin Optik Website" />
+                  <div class="portfolio-info">
+                    <h4>Ecem Çetin Optik Website</h4>
+                    <p>WordPress E-commerce Solution</p>
+                    <a
+                      href="assets/img/portfolio/app-1.jpg"
+                      title="Ecem Çetin Optik"
+                      data-gallery="portfolio-gallery-web"
+                      class="glightbox preview-link"
+                      ><i class="bi bi-zoom-in"></i
+                    ></a>
+                    <a href="portfolio-details.html?project=ecemcetin" title="More Details" class="details-link"
+                      ><i class="bi bi-link-45deg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Serkoç Prefabrik Project -->
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+                <div class="portfolio-content h-100">
+                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Serkoç Prefabrik Website" />
+                  <div class="portfolio-info">
+                    <h4>Serkoç Prefabrik Website</h4>
+                    <p>WordPress Corporate Website</p>
+                    <a
+                      href="assets/img/portfolio/app-1.jpg"
+                      title="Serkoç Prefabrik"
+                      data-gallery="portfolio-gallery-web"
+                      class="glightbox preview-link"
+                      ><i class="bi bi-zoom-in"></i
+                    ></a>
+                    <a href="portfolio-details.html?project=serkoc" title="More Details" class="details-link"
+                      ><i class="bi bi-link-45deg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Portfolio Section -->
+
+      <!-- Services Section -->
+      <section id="services" class="services section">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Services</h2>
+          <p>I offer a range of software development and AI integration services</p>
+        </div>
+
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-robot"></i></div>
+                <div>
+                  <h4 class="title">AI Integration</h4>
+                  <p class="description">
+                    Custom AI solutions and chatbot development using modern language models and machine learning
+                    techniques
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-code-square"></i></div>
+                <div>
+                  <h4 class="title">Backend Development</h4>
+                  <p class="description">
+                    High-performance RESTful APIs and microservices development using Node.js and modern frameworks
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-database"></i></div>
+                <div>
+                  <h4 class="title">Database Solutions</h4>
+                  <p class="description">
+                    Database design, optimization, and implementation using MongoDB, Redis, and Weaviate
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-wordpress"></i></div>
+                <div>
+                  <h4 class="title">WordPress Development</h4>
+                  <p class="description">
+                    Custom WordPress website development including e-commerce solutions, corporate websites, and theme
+                    customization
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-search"></i></div>
+                <div>
+                  <h4 class="title">Search Solutions</h4>
+                  <p class="description">
+                    Implementation of hybrid search systems combining traditional and vector-based approaches
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-people"></i></div>
+                <div>
+                  <h4 class="title">Technical Consulting</h4>
+                  <p class="description">
+                    Expert advice on software architecture, AI implementation, and technology selection
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- End Services Section -->
+
+      <!-- Blog Section -->
+      <section id="blog" class="blog section light-background">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Latest Blog Posts</h2>
+          <p>Check out my latest articles and tutorials about software development, AI, and technology</p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div id="blog-loading-message" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading blog posts...</p>
+          </div>
+          
+          <!-- Blog Posts Slider -->
+          <div class="blog-slider swiper">
+            <div class="swiper-wrapper" id="latest-blog-posts">
+              <!-- Blog posts will be loaded here -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- End Blog Section -->
+    </main>
+
+    <footer id="footer" class="footer position-relative">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>© <span>2025</span> <strong class="px-1">Çağatay Türkan</strong> <span>All Rights Reserved</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      style="opacity: 0; visibility: hidden"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      async function fetchBlogPosts() {
+        const blogContainer = document.getElementById('latest-blog-posts');
+        const loadingMessage = document.getElementById('blog-loading-message');
+
+        try {
+          console.log('Fetching blog posts...');
+          const response = await fetch('https://cagatayturkan.com/blog/en/index.xml');
+
+          if (!response.ok) {
+            throw new Error('RSS feed not available');
+          }
+
+          const data = await response.text();
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(data, 'application/xml');
+          const items = xml.querySelectorAll('item');
+
+          if (items.length === 0) {
+            loadingMessage.innerHTML = `
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle me-2"></i>
+              No blog posts available at the moment. Please check back later.
+            </div>
+          `;
+            return;
+          }
+
+          // Clear loading message
+          loadingMessage.style.display = 'none';
+
+          // Create a document fragment for better performance
+          const fragment = document.createDocumentFragment();
+
+          items.forEach((item, index) => {
+            if (index < 6) {
+              const title = item.querySelector('title').textContent;
+              const link = item.querySelector('link').textContent;
+              const description = item.querySelector('description')?.textContent || '';
+              const date = new Date(item.querySelector('pubDate').textContent);
+
+              // Get image URL from cardimage or featureimage
+              let imageUrl = 'assets/img/blog-placeholder.jpg'; // Default image
+              const cardImage = item.querySelector('cardimage')?.textContent;
+              const featureImage = item.querySelector('featureimage')?.textContent;
+
+              if (cardImage) {
+                imageUrl = cardImage.startsWith('http') ? cardImage : `https://cagatayturkan.com${cardImage}`;
+              } else if (featureImage) {
+                imageUrl = featureImage.startsWith('http') ? featureImage : `https://cagatayturkan.com${featureImage}`;
+              }
+
+              console.log('Post:', {
+                title,
+                link,
+                cardImage,
+                featureImage,
+                finalImageUrl: imageUrl,
+                date: date.toLocaleDateString(),
+              });
+
+              const postElement = document.createElement('div');
+              postElement.className = 'swiper-slide';
+              postElement.innerHTML = `
+              <article class="portfolio-item">
+                <div class="portfolio-content h-100">
+                  <img src="${imageUrl}" class="img-fluid" alt="${title}" onerror="this.onerror=null; this.src='assets/img/blog-placeholder.jpg';">
+                  <div class="portfolio-info">
+                    <h4>${title}</h4>
+                    <p class="text-muted mb-2">${date.toLocaleDateString()}</p>
+                    <p>${description.replace(/<[^>]*>/g, '').substring(0, 100)}...</p>
+                    <a href="${link}" class="details-link" target="_blank" title="Read More">
+                      <i class="bi bi-link-45deg"></i>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            `;
+              fragment.appendChild(postElement);
+            }
+          });
+
+          blogContainer.appendChild(fragment);
+          
+          // Initialize Swiper
+          new Swiper('.blog-slider', {
+            speed: 400,
+            loop: true,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              type: 'bullets',
+              clickable: true,
+            },
+            slidesPerView: 1,
+            spaceBetween: 30,
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              }
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching blog posts:', error);
+          loadingMessage.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Blog posts are temporarily unavailable. Please check back later.
+          </div>
+        `;
+        }
+      }
+
+      // Call the function when the page loads
+      document.addEventListener('DOMContentLoaded', fetchBlogPosts);
+    </script>
+
+    <!-- Chatbot iframe -->
+    <iframe
+      src="http://192.168.1.38:3000"
+      style="
+        position: fixed;
+        bottom: 10px;
+        right: 10px; /* Start hidden off-screen */
+        width: 100%;
+        height: 99%;
+        border: none;
+        border-radius: 10px 0 0 0;
+        z-index: 1;
+        background-color: transparent;
+        transition: right 0.3s ease-in-out;
+        transform: translateX(0); /* Add transform for smooth slide-in */
+      "
+      title="Chatbot"
+      onload="this.style.right='0'"
+    ></iframe>
   </body>
 </html>
