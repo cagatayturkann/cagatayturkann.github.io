@@ -684,6 +684,33 @@ section,
 /*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
+.skills .skill-category {
+  margin-bottom: 30px;
+}
+
+.skills .skill-category h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+
+.skills .skill-category ul li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.skills .skill-category ul li i {
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.skills .skill-category ul li:last-child {
+  margin-bottom: 0;
+}
+
 .skills .progress {
   height: 60px;
   display: block;
@@ -833,10 +860,19 @@ section,
   opacity: 0;
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 33;
   transition: all ease-in-out 0.3s;
   background: rgba(0, 0, 0, 0.6);
   padding: 15px;
+}
+
+.portfolio .portfolio-content .portfolio-info a.text-white {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.portfolio .portfolio-content .portfolio-info a.text-white:hover h4 {
+  color: #000
 }
 
 .portfolio .portfolio-content .portfolio-info h4 {
@@ -846,6 +882,7 @@ section,
   color: #ffffff;
   display: inline-block;
   background-color: var(--accent-color);
+  transition: color 0.3s ease;
 }
 
 .portfolio .portfolio-content .portfolio-info p {
@@ -890,6 +927,12 @@ section,
   transform: scale(1.1);
 }
 
+.isotope-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.3s;
+}
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
@@ -946,6 +989,10 @@ section,
 /*--------------------------------------------------------------
 # Testimonials Section
 --------------------------------------------------------------*/
+.testimonials {
+  padding: 60px 0;
+}
+
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
   overflow: hidden;
@@ -1164,9 +1211,43 @@ section,
   background-color: var(--accent-color);
 }
 
+/* Custom styles for portfolio slider navigation */
+.portfolio-details-slider .swiper-button-next,
+.portfolio-details-slider .swiper-button-prev {
+  color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.6);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-details-slider .swiper-button-next:after,
+.portfolio-details-slider .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.portfolio-details-slider .swiper-button-next:hover,
+.portfolio-details-slider .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.portfolio-details-slider .swiper-slide img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-details-slider .swiper-slide img:hover {
+  transform: scale(1.02);
+}
+
 .portfolio-details .portfolio-info {
   padding: 30px;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
 .portfolio-details .portfolio-info h3 {
@@ -1188,7 +1269,8 @@ section,
 }
 
 .portfolio-details .portfolio-description {
-  padding-top: 30px;
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-details .portfolio-description h2 {
@@ -1200,6 +1282,15 @@ section,
 .portfolio-details .portfolio-description p {
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-description ul {
+  padding-left: 20px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-description ul li {
+  margin-bottom: 10px;
 }
 
 /*--------------------------------------------------------------
@@ -1270,6 +1361,141 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+
+
+.blog .portfolio-item {
+  margin-bottom: 30px;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.blog .portfolio-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog .portfolio-content img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.blog .portfolio-content:hover img {
+  transform: scale(1.1);
+}
+
+.blog .portfolio-info {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.blog .portfolio-content:hover .portfolio-info {
+  bottom: 0;
+}
+
+.blog .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.blog .portfolio-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.blog .portfolio-info .details-link {
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.blog .portfolio-info .details-link:hover {
+  color: var(--accent-color);
+}
+
+/* Blog Slider */
+.blog-slider {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.blog-slider .swiper-slide {
+  height: auto;
+}
+
+.blog-slider .swiper-pagination {
+  bottom: 0;
+}
+
+.blog-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid var(--accent-color);
+}
+
+.blog-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}
+
+.blog-slider .portfolio-item {
+  height: 100%;
+}
+
+.blog-slider .portfolio-content {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .blog-slider .swiper-slide {
+    padding: 0 10px;
+  }
+}
+
+/* Portfolio Slider */
+.portfolio-slider {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.portfolio-slider .swiper-slide {
+  height: auto;
+}
+
+.portfolio-slider .swiper-pagination {
+  bottom: 0;
+}
+
+.portfolio-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid var(--accent-color);
+}
+
+.portfolio-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .portfolio-slider .swiper-slide {
+    padding: 0 10px;
+  }
 }
