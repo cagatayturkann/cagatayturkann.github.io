@@ -68,7 +68,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li>
-            <a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a>
+            <a href="index.html" class="active"><i class="bi bi-house navicon"></i>Home</a>
           </li>
           <li>
             <a href="#about"><i class="bi bi-person navicon"></i> About</a>
@@ -130,24 +130,13 @@
                 <div class="col-lg-6">
                   <ul>
                     <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Izmir, Turkey</span></li>
-                    <li>
-                      <i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                      <span>https://cagatayturkan.com</span>
-                    </li>
                   </ul>
                 </div>
                 <div class="col-lg-6">
                   <ul>
                     <li>
-                      <i class="bi bi-chevron-right"></i> <strong>Degree:</strong>
-                      <span>Master's in Computer Engineering</span>
-                    </li>
-                    <li>
                       <i class="bi bi-chevron-right"></i> <strong>Languages:</strong>
                       <span>Turkish (Native), English (Fluent C1)</span>
-                    </li>
-                    <li>
-                      <i class="bi bi-chevron-right"></i> <strong>Military Status:</strong> <span>Completed</span>
                     </li>
                   </ul>
                 </div>
@@ -158,6 +147,12 @@
                 AI models, implementing custom classification algorithms, and developing high-performance RESTful APIs
                 using Node.js and modern database technologies.
               </p>
+
+              <div class="text-center text-lg-start mt-4">
+                <a href="https://github.com/cagatayturkann/cagatayturkann.github.io/blob/master/resume.pdf" download class="btn btn-primary py-2 px-4 rounded-pill">
+                  <i class="bi bi-download me-2"></i>Download Resume
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -213,7 +208,7 @@
       <!-- /Stats Section -->
 
       <!-- Skills Section -->
-      <section id="skills" class="skills section light-background">
+      <!-- <section id="skills" class="skills section light-background">
         <div class="container section-title" data-aos="fade-up">
           <h2>Technical Skills</h2>
           <p>Experienced in modern web technologies and software development practices</p>
@@ -273,10 +268,10 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <!-- Resume Section -->
-      <section id="resume" class="resume section">
+      <section id="resume" class="resume section light-background">
         <div class="container section-title" data-aos="fade-up">
           <h2>Professional Experience</h2>
           <p>My career journey and educational background</p>
@@ -350,7 +345,7 @@
       </section>
 
       <!-- Portfolio Section -->
-      <section id="portfolio" class="portfolio section light-background">
+      <section id="portfolio" class="portfolio section">
         <div class="container section-title" data-aos="fade-up">
           <h2>Portfolio</h2>
           <p>My Recent Projects</p>
@@ -361,26 +356,96 @@
             <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-web">Web</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-design">Design</li>
+              <li data-filter=".filter-wordpress">Wordpress</li>
+              <!-- <li data-filter=".filter-design">Design</li> -->
             </ul>
 
             <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-              <!-- Tayfun Optik Project -->
+              <!-- Personal Chatbot Project -->
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Tayfun Optik Website" />
+                  <a href="portfolio-details.html?project=personal-chatbot">
+                    <img
+                      src="assets/img/portfolio/personalChatbot/screenshot1.png"
+                      class="img-fluid"
+                      alt="Personal Chatbot Application"
+                      onerror="this.src='assets/img/portfolio/app-1.jpg'"
+                    />
+                  </a>
                   <div class="portfolio-info">
-                    <h4>Tayfun Optik Website</h4>
-                    <p>WordPress E-commerce Solution</p>
+                    <a href="portfolio-details.html?project=personal-chatbot" class="text-white">
+                      <h4>Personal Chatbot</h4>
+                      <p>Intelligent chatbot with RAG model and Gemini API</p>
+                    </a>
                     <a
-                      href="assets/img/portfolio/app-1.jpg"
+                      href="assets/img/portfolio/personalChatbot/screenshot1.png"
+                      title="Personal Chatbot"
+                      data-gallery="portfolio-gallery-app"
+                      class="glightbox preview-link"
+                      onerror="this.href='assets/img/portfolio/app-1.jpg'"
+                      ><i class="bi bi-zoom-in"></i
+                    ></a>
+                    <a href="https://personal-chatbot-nine.vercel.app/" target="_blank" title="Visit Website" class="details-link"
+                      ><i class="bi bi-link-45deg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- E-commerce RAG Project -->
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+                <div class="portfolio-content h-100">
+                  <a href="portfolio-details.html?project=ecommerce-rag">
+                    <img
+                      src="assets/img/portfolio/ecommerceRag/screenshot1.png"
+                      class="img-fluid"
+                      alt="E-commerce RAG Application"
+                      onerror="this.src='assets/img/portfolio/app-1.jpg'"
+                    />
+                  </a>
+                  <div class="portfolio-info">
+                    <a href="portfolio-details.html?project=ecommerce-rag" class="text-white">
+                      <h4>E-commerce RAG Application</h4>
+                      <p>AI-powered e-commerce with Retrieval-Augmented Generation</p>
+                    </a>
+                    <a
+                      href="assets/img/portfolio/ecommerceRag/screenshot1.png"
+                      title="E-commerce RAG"
+                      data-gallery="portfolio-gallery-app"
+                      class="glightbox preview-link"
+                      onerror="this.href='assets/img/portfolio/app-1.jpg'"
+                      ><i class="bi bi-zoom-in"></i
+                    ></a>
+                    <a href="https://ecommerce-rag.vercel.app/" target="_blank" title="Visit Website" class="details-link"
+                      ><i class="bi bi-link-45deg"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tayfun Optik Project -->
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-wordpress">
+                <div class="portfolio-content h-100">
+                  <a href="portfolio-details.html?project=tayfunoptik">
+                    <img
+                      src="assets/img/portfolio/tayfunOptik/screenshot1.jpg"
+                      class="img-fluid"
+                      alt="Tayfun Optik Website"
+                    />
+                  </a>
+                  <div class="portfolio-info">
+                    <a href="portfolio-details.html?project=tayfunoptik" class="text-white">
+                      <h4>Tayfun Optik Website</h4>
+                      <p>WordPress E-commerce Solution</p>
+                    </a>
+                    <a
+                      href="assets/img/portfolio/tayfunOptik/screenshot1.jpg"
                       title="Tayfun Optik"
                       data-gallery="portfolio-gallery-web"
                       class="glightbox preview-link"
                       ><i class="bi bi-zoom-in"></i
                     ></a>
-                    <a href="portfolio-details.html?project=tayfunoptik" title="More Details" class="details-link"
+                    <a href="https://tayfunoptik.com" target="_blank" title="Visit Website" class="details-link"
                       ><i class="bi bi-link-45deg"></i
                     ></a>
                   </div>
@@ -388,20 +453,24 @@
               </div>
 
               <!-- Ecem Çetin Optik Project -->
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-wordpress">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Ecem Çetin Optik Website" />
+                  <a href="portfolio-details.html?project=ecemcetin">
+                    <img src="assets/img/portfolio/ecemCetinOptik/screenshot1.png" class="img-fluid" alt="Ecem Çetin Optik Website" />
+                  </a>
                   <div class="portfolio-info">
-                    <h4>Ecem Çetin Optik Website</h4>
-                    <p>WordPress E-commerce Solution</p>
+                    <a href="portfolio-details.html?project=ecemcetin" class="text-white">
+                      <h4>Ecem Çetin Optik Website</h4>
+                      <p>WordPress E-commerce Solution</p>
+                    </a>
                     <a
-                      href="assets/img/portfolio/app-1.jpg"
+                      href="assets/img/portfolio/ecemCetinOptik/screenshot1.png"
                       title="Ecem Çetin Optik"
                       data-gallery="portfolio-gallery-web"
                       class="glightbox preview-link"
                       ><i class="bi bi-zoom-in"></i
                     ></a>
-                    <a href="portfolio-details.html?project=ecemcetin" title="More Details" class="details-link"
+                    <a href="https://ecemcetinoptik.com" target="_blank" title="Visit Website" class="details-link"
                       ><i class="bi bi-link-45deg"></i
                     ></a>
                   </div>
@@ -409,20 +478,28 @@
               </div>
 
               <!-- Serkoç Prefabrik Project -->
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-wordpress">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="Serkoç Prefabrik Website" />
+                  <a href="portfolio-details.html?project=serkoc">
+                    <img
+                      src="assets/img/portfolio/serkocPrefabrik/screenshot1.jpg"
+                      class="img-fluid"
+                      alt="Serkoç Prefabrik Website"
+                    />
+                  </a>
                   <div class="portfolio-info">
-                    <h4>Serkoç Prefabrik Website</h4>
-                    <p>WordPress Corporate Website</p>
+                    <a href="portfolio-details.html?project=serkoc" class="text-white">
+                      <h4>Serkoç Prefabrik Website</h4>
+                      <p>WordPress Corporate Website</p>
+                    </a>
                     <a
-                      href="assets/img/portfolio/app-1.jpg"
+                      href="assets/img/portfolio/serkocPrefabrik/screenshot1.jpg"
                       title="Serkoç Prefabrik"
                       data-gallery="portfolio-gallery-web"
                       class="glightbox preview-link"
                       ><i class="bi bi-zoom-in"></i
                     ></a>
-                    <a href="portfolio-details.html?project=serkoc" title="More Details" class="details-link"
+                    <a href="https://serkocprefabrik.com" target="_blank" title="Visit Website" class="details-link"
                       ><i class="bi bi-link-45deg"></i
                     ></a>
                   </div>
@@ -435,7 +512,7 @@
       <!-- End Portfolio Section -->
 
       <!-- Services Section -->
-      <section id="services" class="services section">
+      <section id="services" class="services section light-background">
         <div class="container section-title" data-aos="fade-up">
           <h2>Services</h2>
           <p>I offer a range of software development and AI integration services</p>
@@ -523,7 +600,7 @@
       <!-- End Services Section -->
 
       <!-- Blog Section -->
-      <section id="blog" class="blog section light-background">
+      <section id="blog" class="blog section">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Latest Blog Posts</h2>
@@ -538,7 +615,7 @@
             </div>
             <p class="mt-2">Loading blog posts...</p>
           </div>
-          
+
           <!-- Blog Posts Slider -->
           <div class="blog-slider swiper">
             <div class="swiper-wrapper" id="latest-blog-posts">
@@ -551,7 +628,7 @@
       <!-- End Blog Section -->
     </main>
 
-    <footer id="footer" class="footer position-relative">
+    <footer id="footer" class="footer position-relative light-background">
       <div class="container">
         <div class="copyright text-center">
           <p>© <span>2025</span> <strong class="px-1">Çağatay Türkan</strong> <span>All Rights Reserved</span></p>
@@ -587,6 +664,9 @@
 
     <script>
       async function fetchBlogPosts() {
+        // Remove the old Portfolio Filters implementation that wasn't working properly
+
+        // Blog posts loading code
         const blogContainer = document.getElementById('latest-blog-posts');
         const loadingMessage = document.getElementById('blog-loading-message');
 
@@ -668,8 +748,8 @@
           });
 
           blogContainer.appendChild(fragment);
-          
-          // Initialize Swiper
+
+          // Initialize Blog Swiper
           new Swiper('.blog-slider', {
             speed: 400,
             loop: true,
@@ -690,8 +770,8 @@
               },
               1024: {
                 slidesPerView: 3,
-              }
-            }
+              },
+            },
           });
         } catch (error) {
           console.error('Error fetching blog posts:', error);
@@ -704,28 +784,55 @@
         }
       }
 
-      // Call the function when the page loads
-      document.addEventListener('DOMContentLoaded', fetchBlogPosts);
+      /**
+       * Init isotope layout and filters
+       */
+      function initIsotope() {
+        document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
+          let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+          let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+          let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+
+          let initIsotope;
+
+          // Initialize Isotope when images are loaded to avoid layout issues
+          imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
+            initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+              itemSelector: '.isotope-item',
+              layoutMode: layout,
+              filter: filter,
+              sortBy: sort,
+            });
+          });
+
+          // Handle filter clicks
+          isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filterBtn) {
+            filterBtn.addEventListener('click', function () {
+              // Remove active class from current active filter
+              isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+
+              // Add active class to clicked filter
+              this.classList.add('filter-active');
+
+              // Apply filter
+              if (initIsotope) {
+                initIsotope.arrange({
+                  filter: this.getAttribute('data-filter'),
+                });
+              }
+            });
+          });
+        });
+      }
+
+      // Initialize both blog posts and isotope filtering
+      document.addEventListener('DOMContentLoaded', function () {
+        fetchBlogPosts();
+        initIsotope();
+      });
     </script>
 
-    <!-- Chatbot iframe -->
-    <iframe
-      src="http://192.168.1.38:3000"
-      style="
-        position: fixed;
-        bottom: 10px;
-        right: 10px; /* Start hidden off-screen */
-        width: 100%;
-        height: 99%;
-        border: none;
-        border-radius: 10px 0 0 0;
-        z-index: 1;
-        background-color: transparent;
-        transition: right 0.3s ease-in-out;
-        transform: translateX(0); /* Add transform for smooth slide-in */
-      "
-      title="Chatbot"
-      onload="this.style.right='0'"
-    ></iframe>
+    <!-- Chatbot -->
+    <script src="https://personal-chatbot-nine.vercel.app/js/widget.js"></script>
   </body>
 </html>

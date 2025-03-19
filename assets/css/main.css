@@ -860,10 +860,19 @@ section,
   opacity: 0;
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 33;
   transition: all ease-in-out 0.3s;
   background: rgba(0, 0, 0, 0.6);
   padding: 15px;
+}
+
+.portfolio .portfolio-content .portfolio-info a.text-white {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.portfolio .portfolio-content .portfolio-info a.text-white:hover h4 {
+  color: #000
 }
 
 .portfolio .portfolio-content .portfolio-info h4 {
@@ -873,6 +882,7 @@ section,
   color: #ffffff;
   display: inline-block;
   background-color: var(--accent-color);
+  transition: color 0.3s ease;
 }
 
 .portfolio .portfolio-content .portfolio-info p {
@@ -917,6 +927,12 @@ section,
   transform: scale(1.1);
 }
 
+.isotope-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: 0.3s;
+}
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
@@ -1195,9 +1211,43 @@ section,
   background-color: var(--accent-color);
 }
 
+/* Custom styles for portfolio slider navigation */
+.portfolio-details-slider .swiper-button-next,
+.portfolio-details-slider .swiper-button-prev {
+  color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.6);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-details-slider .swiper-button-next:after,
+.portfolio-details-slider .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.portfolio-details-slider .swiper-button-next:hover,
+.portfolio-details-slider .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.portfolio-details-slider .swiper-slide img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-details-slider .swiper-slide img:hover {
+  transform: scale(1.02);
+}
+
 .portfolio-details .portfolio-info {
   padding: 30px;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
 .portfolio-details .portfolio-info h3 {
@@ -1219,7 +1269,8 @@ section,
 }
 
 .portfolio-details .portfolio-description {
-  padding-top: 30px;
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-details .portfolio-description h2 {
@@ -1231,6 +1282,15 @@ section,
 .portfolio-details .portfolio-description p {
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-description ul {
+  padding-left: 20px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-description ul li {
+  margin-bottom: 10px;
 }
 
 /*--------------------------------------------------------------
@@ -1404,6 +1464,38 @@ section,
 
 @media (max-width: 768px) {
   .blog-slider .swiper-slide {
+    padding: 0 10px;
+  }
+}
+
+/* Portfolio Slider */
+.portfolio-slider {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.portfolio-slider .swiper-slide {
+  height: auto;
+}
+
+.portfolio-slider .swiper-pagination {
+  bottom: 0;
+}
+
+.portfolio-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid var(--accent-color);
+}
+
+.portfolio-slider .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .portfolio-slider .swiper-slide {
     padding: 0 10px;
   }
 }

@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Portfolio Details - iPortfolio Bootstrap Template</title>
-    <meta content="" name="description" />
+    <title id="page-title">Portfolio Details - Çağatay Türkan</title>
+    <meta content="" name="description" id="page-description" />
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="assets/img/my-profile-img.jpg" rel="icon" />
+    <link href="assets/img/my-profile-img.jpg" rel="apple-touch-icon" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -110,7 +110,10 @@
                     <img src="assets/img/portfolio/placeholder.jpg" alt="" />
                   </div>
                 </div>
+                <!-- Navigation elements -->
                 <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
               </div>
             </div>
 
@@ -122,11 +125,18 @@
                   <li><strong>Client</strong>: <span id="project-client">Loading...</span></li>
                   <li><strong>Project date</strong>: <span id="project-date">Loading...</span></li>
                   <li><strong>Project URL</strong>: <a id="project-url" href="#" target="_blank">Loading...</a></li>
+                  <li id="github-url-container" style="display: none">
+                    <strong>GitHub</strong>: <a id="github-url" href="#" target="_blank">Loading...</a>
+                  </li>
                 </ul>
               </div>
+            </div>
+            
+            <!-- Project Description - Full Width -->
+            <div class="col-12 mt-4">
               <div class="portfolio-description">
                 <h2 id="project-title">Loading...</h2>
-                <p id="project-description">Loading...</p>
+                <div id="project-description" class="mt-4">Loading...</div>
               </div>
             </div>
           </div>
@@ -136,35 +146,135 @@
       <script>
         // Project data
         const projects = {
+          'personal-chatbot': {
+            title: 'Personal Chatbot',
+            category: 'Web Application',
+            client: 'Personal Project',
+            date: 'March 2025',
+            url: 'https://personal-chatbot-nine.vercel.app/',
+            description:
+              `An intelligent chatbot application based on Gemini API, using the RAG (Retrieval Augmented Generation) model. This project integrates Google's Gemini AI for powerful responses, uses Weaviate vector database for semantic search capabilities, and stores conversations in MongoDB.
+              <br><br>
+              The chatbot serves as a personal assistant containing information about my background, experience, and skills. The vector database is populated with specific data points about my professional journey and IT knowledge, allowing the chatbot to accurately answer questions about me personally or professional IT topics.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>Multi-language support with integrated translator</li>
+                <li>Conversation history stored in MongoDB</li>
+                <li>Ready-to-use web widget for easy integration with websites</li>
+                <li>Vector search for accurate information retrieval</li>
+                <li>Secure architecture with CORS protection</li>
+                <li>Clean service-oriented design with clear separation of concerns</li>
+              </ul>`,
+            images: ['assets/img/portfolio/personalChatbot/screenshot1.png'],
+            githubUrl: 'https://github.com/cagatayturkann/personalChatbot',
+          },
+          'ecommerce-rag': {
+            title: 'E-commerce RAG Application',
+            category: 'Web Application',
+            client: 'Personal Project',
+            date: 'March 2025',
+            url: 'https://ecommerce-rag.vercel.app/',
+            description:
+              `An intelligent e-commerce application that leverages Retrieval-Augmented Generation (RAG) to provide advanced product search, recommendations, and conversational commerce capabilities. The project follows a modular architecture with clear separation of concerns across controllers, services, and utilities.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>AI-powered product search and intelligent recommendations</li>
+                <li>Weaviate vector database integration for semantic product retrieval</li>
+                <li>Integration with large language models (Gemini, OpenAI)</li>
+                <li>Conversation history stored in MongoDB for personalized experiences</li>
+                <li>Multi-language support via integrated translation</li>
+                <li>Ready-to-use chatbot widget for easy integration into e-commerce sites</li>
+                <li>Dynamic product detail pages with complete information</li>
+                <li>Security features including CORS protection and origin/referrer control</li>
+                <li>Clean architecture with service-oriented design</li>
+              </ul>`,
+            images: [
+              'assets/img/portfolio/ecommerceRag/screenshot1.png',
+              'assets/img/portfolio/ecommerceRag/screenshot2.png',
+              'assets/img/portfolio/ecommerceRag/screenshot3.png',
+              'assets/img/portfolio/ecommerceRag/screenshot4.png',
+            ],
+            githubUrl: 'https://github.com/cagatayturkann/ecommerceRAG',
+          },
           tayfunoptik: {
             title: 'Tayfun Optik E-commerce Website',
             category: 'Web Development',
             client: 'Tayfun Optik',
-            date: 'March 2024',
+            date: 'November 2022',
             url: 'https://tayfunoptik.com',
             description:
-              'A modern e-commerce website developed for Tayfun Optik, an optical store in Istanbul. Built with WordPress, the site features a comprehensive product catalog, appointment scheduling system, and responsive design. The project includes custom theme development, WooCommerce integration, and optimization for search engines.',
-            images: ['assets/img/portfolio/app-1.jpg'],
+              `A modern e-commerce website developed for Tayfun Optik, an optical store in Istanbul. Built with WordPress, the site features a comprehensive product catalog, appointment scheduling system, and responsive design.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>Custom WordPress theme development</li>
+                <li>WooCommerce integration for e-commerce functionality</li>
+                <li>Mobile-first responsive design</li>
+                <li>Product categorization and filtering options</li>
+                <li>Search engine optimization (SEO)</li>
+              </ul>`,
+            images: [
+              'assets/img/portfolio/tayfunOptik/screenshot1.jpg',
+              'assets/img/portfolio/tayfunOptik/screenshot2.jpg',
+              'assets/img/portfolio/tayfunOptik/screenshot3.jpg',
+              'assets/img/portfolio/tayfunOptik/screenshot4.jpg',
+              'assets/img/portfolio/tayfunOptik/screenshot5.jpg',
+              'assets/img/portfolio/tayfunOptik/screenshot6.jpg',
+            ],
           },
           ecemcetin: {
             title: 'Ecem Çetin Optik E-commerce Website',
             category: 'Web Development',
             client: 'Ecem Çetin Optik',
-            date: 'March 2024',
+            date: 'February 2025',
             url: 'https://ecemcetinoptik.com',
             description:
-              'A feature-rich e-commerce website developed for Ecem Çetin Optik. The website showcases their extensive collection of optical products and provides an intuitive shopping experience. Built with WordPress and WooCommerce, featuring custom theme development, product filtering, and mobile-first design approach.',
-            images: ['assets/img/portfolio/app-1.jpg'],
+              `A feature-rich e-commerce website developed for Ecem Çetin Optik. The website showcases their extensive collection of optical products and provides an intuitive shopping experience.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>Custom WordPress theme development</li>
+                <li>WooCommerce integration with payment gateways</li>
+                <li>Advanced product filtering and search options</li>
+                <li>Mobile-responsive design for optimal viewing on all devices</li>
+                <li>Image optimization for faster loading speeds</li>
+                <li>Contact forms and location integration</li>
+              </ul>`,
+            images: [
+              'assets/img/portfolio/ecemCetinOptik/screenshot1.png',
+              'assets/img/portfolio/ecemCetinOptik/screenshot2.png',
+              'assets/img/portfolio/ecemCetinOptik/screenshot3.png',
+              'assets/img/portfolio/ecemCetinOptik/screenshot4.png',
+            ],
           },
           serkoc: {
             title: 'Serkoç Prefabrik Corporate Website',
             category: 'Web Development',
             client: 'Serkoç Prefabrik',
-            date: 'March 2024',
+            date: 'January 2023',
             url: 'https://serkocprefabrik.com',
             description:
-              'A comprehensive corporate website for Serkoç Prefabrik, a leading prefabricated building manufacturer in Turkey. The website showcases their extensive portfolio of industrial and residential projects, product catalog, and company information. Built with WordPress, featuring a modern design, responsive layout, and optimized for performance and SEO. The site includes detailed project galleries, service descriptions, and easy-to-use contact forms for customer inquiries.',
-            images: ['assets/img/portfolio/app-1.jpg'],
+              `A comprehensive corporate website for Serkoç Prefabrik, a leading prefabricated building manufacturer in Turkey. The website showcases their extensive portfolio of industrial and residential projects, product catalog, and company information.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>Modern design with responsive layout</li>
+                <li>Portfolio showcase with project filtering</li>
+                <li>Detailed product catalog with specifications</li>
+                <li>Custom WordPress theme development</li>
+                <li>Performance and SEO optimization</li>
+                <li>Contact forms and integration with Google Maps</li>
+              </ul>`,
+            images: [
+              'assets/img/portfolio/serkocPrefabrik/screenshot1.jpg',
+              'assets/img/portfolio/serkocPrefabrik/screenshot2.jpg',
+              'assets/img/portfolio/serkocPrefabrik/screenshot3.jpg',
+              'assets/img/portfolio/serkocPrefabrik/screenshot4.jpg',
+              'assets/img/portfolio/serkocPrefabrik/screenshot5.jpg',
+              'assets/img/portfolio/serkocPrefabrik/screenshot6.jpg',
+            ],
           },
         };
 
@@ -176,6 +286,13 @@
           if (projectId && projects[projectId]) {
             const project = projects[projectId];
 
+            // Update page title
+            document.getElementById('page-title').textContent = `${project.title} - Çağatay Türkan`;
+            
+            // Update page meta description
+            const description = project.description.replace(/<[^>]*>/g, '').substring(0, 160);
+            document.getElementById('page-description').setAttribute('content', `${project.title}: ${description}...`);
+            
             // Update project information
             document.getElementById('project-category').textContent = project.category;
             document.getElementById('project-client').textContent = project.client;
@@ -183,7 +300,16 @@
             document.getElementById('project-url').href = project.url;
             document.getElementById('project-url').textContent = project.url;
             document.getElementById('project-title').textContent = project.title;
-            document.getElementById('project-description').textContent = project.description;
+            document.getElementById('project-description').innerHTML = project.description;
+
+            // Show GitHub URL if available
+            if (project.githubUrl) {
+              document.getElementById('github-url-container').style.display = 'block';
+              document.getElementById('github-url').href = project.githubUrl;
+              document.getElementById('github-url').textContent = project.githubUrl;
+            } else {
+              document.getElementById('github-url-container').style.display = 'none';
+            }
 
             // Update images
             const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -191,7 +317,9 @@
               .map(
                 (img) => `
             <div class="swiper-slide">
-              <img src="${img}" alt="${project.title}">
+              <a href="${img}" class="glightbox" data-gallery="portfolio-gallery">
+                <img src="${img}" alt="${project.title}">
+              </a>
             </div>
           `
               )
@@ -210,6 +338,18 @@
                 type: 'bullets',
                 clickable: true,
               },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
+            });
+            
+            // Initialize GLightbox for the images
+            GLightbox({
+              selector: '.glightbox',
+              touchNavigation: true,
+              loop: true,
+              autoplayVideos: true
             });
           }
         });
@@ -250,92 +390,7 @@
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
 
-    <!-- Chatbot iframe -->
-    <iframe
-      id="chatbot-frame"
-      src="http://192.168.1.38:3000"
-      style="
-        position: fixed;
-        bottom: 0;
-        right: -400px; /* Start hidden off-screen */
-        width: 400px;
-        height: 600px;
-        border: none;
-        border-radius: 10px 0 0 0;
-        z-index: 1000;
-        background-color: transparent;
-        transition: right 0.3s ease-in-out;
-        transform: translateX(0); /* Add transform for smooth slide-in */
-      "
-      title="Chatbot"
-      allow="microphone"
-    ></iframe>
-    <script>
-      // Dedicated script for chatbot iframe
-      document.addEventListener('DOMContentLoaded', function() {
-        const chatbotFrame = document.getElementById('chatbot-frame');
-        
-        // Set a timeout to ensure the iframe appears after the page loads
-        setTimeout(function() {
-          chatbotFrame.style.right = '0';
-        }, 500);
-        
-        // Prevent other scripts from modifying this iframe
-        const originalStyles = {
-          position: 'fixed',
-          bottom: '0',
-          right: '0',
-          width: '400px',
-          height: '600px',
-          border: 'none',
-          borderRadius: '10px 0 0 0',
-          zIndex: '1000',
-          backgroundColor: 'transparent'
-        };
-        
-        // Restore original styles if they get changed
-        function ensureOriginalStyles() {
-          Object.keys(originalStyles).forEach(key => {
-            if (chatbotFrame.style[key] !== originalStyles[key]) {
-              chatbotFrame.style[key] = originalStyles[key];
-            }
-          });
-        }
-        
-        // Check periodically to ensure styles remain as intended
-        setInterval(ensureOriginalStyles, 1000);
-        
-        // Handle mobile view if needed
-        function handleMobileView() {
-          if (window.innerWidth <= 780) {
-            chatbotFrame.style.width = '100%';
-            chatbotFrame.style.height = '100%';
-            
-            // Create space for the hamburger menu if needed
-            const headerToggle = document.querySelector('.header-toggle');
-            if (headerToggle) {
-              const headerToggleRect = headerToggle.getBoundingClientRect();
-              chatbotFrame.style.clipPath = `path('M0,0 v${window.innerHeight} h${window.innerWidth} v-${
-                window.innerHeight
-              } h-${window.innerWidth} z M${headerToggleRect.left - 5},${headerToggleRect.top - 5} h${
-                headerToggleRect.width + 10
-              } v${headerToggleRect.height + 10} h-${headerToggleRect.width + 10} z')`;
-            }
-          } else {
-            // Reset to original styles for desktop
-            Object.keys(originalStyles).forEach(key => {
-              chatbotFrame.style[key] = originalStyles[key];
-            });
-            chatbotFrame.style.clipPath = 'none';
-          }
-        }
-        
-        // Check for mobile view on resize
-        window.addEventListener('resize', handleMobileView);
-        
-        // Initial check for mobile view
-        handleMobileView();
-      });
-    </script>
+    <!-- Chatbot Widget -->
+    <script src="https://personal-chatbot-nine.vercel.app/js/widget.js"></script>
   </body>
 </html>
