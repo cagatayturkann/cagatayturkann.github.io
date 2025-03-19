@@ -131,7 +131,7 @@
                 </ul>
               </div>
             </div>
-            
+
             <!-- Project Description - Full Width -->
             <div class="col-12 mt-4">
               <div class="portfolio-description">
@@ -152,8 +152,7 @@
             client: 'Personal Project',
             date: 'March 2025',
             url: 'https://personal-chatbot-nine.vercel.app/',
-            description:
-              `An intelligent chatbot application based on Gemini API, using the RAG (Retrieval Augmented Generation) model. This project integrates Google's Gemini AI for powerful responses, uses Weaviate vector database for semantic search capabilities, and stores conversations in MongoDB.
+            description: `An intelligent chatbot application based on Gemini API, using the RAG (Retrieval Augmented Generation) model. This project integrates Google's Gemini AI for powerful responses, uses Weaviate vector database for semantic search capabilities, and stores conversations in MongoDB.
               <br><br>
               The chatbot serves as a personal assistant containing information about my background, experience, and skills. The vector database is populated with specific data points about my professional journey and IT knowledge, allowing the chatbot to accurately answer questions about me personally or professional IT topics.
               <br><br>
@@ -171,14 +170,42 @@
             images: ['assets/img/portfolio/personalChatbot/screenshot1.png'],
             githubUrl: 'https://github.com/cagatayturkann/personalChatbot',
           },
+          'tech-blog': {
+            title: 'Personal Blog',
+            category: 'Web Development',
+            client: 'Personal Project',
+            date: 'March 2025',
+            url: 'https://cagatayturkan.com/blog/en/',
+            description: `A bilingual technical blog focused on modern AI technologies, TypeScript, vector databases and development. Built with Hugo for optimal performance and enhanced with AI-driven features.
+              <br><br>
+              The blog serves as a knowledge-sharing platform where I discuss advanced concepts like Retrieval Augmented Generation (RAG), vector databases, and modern JavaScript/TypeScript development. All content is available in both English and Turkish, making technical knowledge accessible to a wider audience.
+              <br><br>
+              Key features include:
+              <ul>
+                <li>Bilingual content with full English and Turkish support</li>
+                <li>Optimized static site generation with Hugo</li>
+                <li>AI-enhanced content creation workflow</li>
+                <li>Semantic search capabilities for content discovery</li>
+                <li>Responsive design with mobile-first approach</li>
+                <li>In-depth technical articles on AI, TypeScript, and vector databases</li>
+                <li>Code snippets with syntax highlighting and easy copying</li>
+                <li>Automated deployment with GitHub Actions CI/CD pipeline</li>
+                <li>Continuous integration ensuring content quality and site reliability</li>
+              </ul>
+              <br>
+              <div class="d-flex flex-wrap gap-3 mt-3">
+                <a href="https://cagatayturkan.com/blog/en/" class="btn btn-primary" target="_blank">English Blog</a>
+                <a href="https://cagatayturkan.com/blog/tr/" class="btn btn-primary" target="_blank">Turkish Blog</a>
+              </div>`,
+            images: ['assets/img/portfolio/personalBlog/screenshot1.png', 'assets/img/portfolio/personalBlog/screenshot2.png'],
+          },
           'ecommerce-rag': {
             title: 'E-commerce RAG Application',
             category: 'Web Application',
             client: 'Personal Project',
             date: 'March 2025',
             url: 'https://ecommerce-rag.vercel.app/',
-            description:
-              `An intelligent e-commerce application that leverages Retrieval-Augmented Generation (RAG) to provide advanced product search, recommendations, and conversational commerce capabilities. The project follows a modular architecture with clear separation of concerns across controllers, services, and utilities.
+            description: `An intelligent e-commerce application that leverages Retrieval-Augmented Generation (RAG) to provide advanced product search, recommendations, and conversational commerce capabilities. The project follows a modular architecture with clear separation of concerns across controllers, services, and utilities.
               <br><br>
               <span style="display: inline-block; margin-bottom: 10px;">❓ Fun fact: The chatbot's name "ChaCha" comes from my nickname! 😊</span>
               <br><br>
@@ -208,8 +235,7 @@
             client: 'Tayfun Optik',
             date: 'November 2022',
             url: 'https://tayfunoptik.com',
-            description:
-              `A modern e-commerce website developed for Tayfun Optik, an optical store in Istanbul. Built with WordPress, the site features a comprehensive product catalog, appointment scheduling system, and responsive design.
+            description: `A modern e-commerce website developed for Tayfun Optik, an optical store in Istanbul. Built with WordPress, the site features a comprehensive product catalog, appointment scheduling system, and responsive design.
               <br><br>
               Key features include:
               <ul>
@@ -234,8 +260,7 @@
             client: 'Ecem Çetin Optik',
             date: 'February 2025',
             url: 'https://ecemcetinoptik.com',
-            description:
-              `A feature-rich e-commerce website developed for Ecem Çetin Optik. The website showcases their extensive collection of optical products and provides an intuitive shopping experience.
+            description: `A feature-rich e-commerce website developed for Ecem Çetin Optik. The website showcases their extensive collection of optical products and provides an intuitive shopping experience.
               <br><br>
               Key features include:
               <ul>
@@ -259,8 +284,7 @@
             client: 'Serkoç Prefabrik',
             date: 'January 2023',
             url: 'https://serkocprefabrik.com',
-            description:
-              `A comprehensive corporate website for Serkoç Prefabrik, a leading prefabricated building manufacturer in Turkey. The website showcases their extensive portfolio of industrial and residential projects, product catalog, and company information.
+            description: `A comprehensive corporate website for Serkoç Prefabrik, a leading prefabricated building manufacturer in Turkey. The website showcases their extensive portfolio of industrial and residential projects, product catalog, and company information.
               <br><br>
               Key features include:
               <ul>
@@ -292,11 +316,11 @@
 
             // Update page title
             document.getElementById('page-title').textContent = `${project.title} - Çağatay Türkan`;
-            
+
             // Update page meta description
             const description = project.description.replace(/<[^>]*>/g, '').substring(0, 160);
             document.getElementById('page-description').setAttribute('content', `${project.title}: ${description}...`);
-            
+
             // Update project information
             document.getElementById('project-category').textContent = project.category;
             document.getElementById('project-client').textContent = project.client;
@@ -347,13 +371,13 @@
                 prevEl: '.swiper-button-prev',
               },
             });
-            
+
             // Initialize GLightbox for the images
             GLightbox({
               selector: '.glightbox',
               touchNavigation: true,
               loop: true,
-              autoplayVideos: true
+              autoplayVideos: true,
             });
           }
         });
