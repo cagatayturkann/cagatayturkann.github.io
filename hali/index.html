@@ -59,7 +59,8 @@
     background: #fff; color: #222; border-radius: 16px; padding: 10px 14px;
     font-size: 17px; font-weight: 600; max-width: 92%; text-align: center;
     position: relative; min-height: 46px; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 0 rgba(0,0,0,.25); margin-bottom: 14px;
+    box-shadow: 0 4px 0 rgba(0,0,0,.25); margin-bottom: 40px;
+    position: relative; z-index: 2;
   }
   #bubble::after {
     content: ""; position: absolute; bottom: -10px; left: 50%; margin-left: -10px;
@@ -80,12 +81,12 @@
   #game.angry #mami { transform: scale(1.3); }
   #game.angry #mami img { filter: saturate(2.5) sepia(.6) hue-rotate(-40deg) contrast(1.2); border-color: var(--danger); }
   #steam {
-    position: absolute; top: -18px; left: 0; right: 0; text-align: center;
-    font-size: 30px; opacity: 0; transition: opacity .15s;
+    position: absolute; top: -4px; right: -26px; z-index: 1;
+    font-size: 36px; opacity: 0; transition: opacity .15s;
   }
   #game.angry #steam { opacity: 1; animation: puff .4s infinite alternate; }
   @keyframes puff { to { transform: translateY(-6px) scale(1.1); } }
-  #mamiName { margin-top: 8px; font-size: 13px; color: var(--muted); }
+  #mamiName { margin-top: 36px; font-size: 13px; color: var(--muted); }
 
   /* Player */
   #player {
@@ -188,7 +189,7 @@
   <div id="stage">
     <div id="bubble">Hoş geldiniz arkadaşlar...</div>
     <div id="mami">
-      <div id="steam">💢💨💢</div>
+      <div id="steam">💢</div>
       <!-- Fotoğraf yoksa çizgi film Mami -->
       <svg id="mamiSvg" viewBox="0 0 200 200" aria-label="Mami">
         <circle cx="100" cy="100" r="98" fill="#ffd8b0" stroke="#fff" stroke-width="5"/>
