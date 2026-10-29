@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Toplantı Halısı</title>
+<meta name="description" content="Meeting Challenge (Emsi) sunar: Mami sinirlenince halıya bak!">
+<meta property="og:title" content="Toplantı Halısı 🧶">
+<meta property="og:description" content="Mami sinirlenince halıya bakmazsan yandın. Mal olduk mal!">
+<style>
+  :root {
+    --bg: #1d1a2b;
+    --panel: #2a2540;
+    --text: #f5f0ff;
+    --muted: #b4a9d6;
+    --accent: #ffcc33;
+    --danger: #ff3b3b;
+    --ok: #3ddc84;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex; justify-content: center;
+    user-select: none; -webkit-user-select: none;
+    overflow: hidden;
+    touch-action: manipulation;
+  }
+  #game {
+    width: 100%; max-width: 480px; height: 100%;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: background .2s;
+  }
+  #game.warn { background: #3a2433; }
+  #game.angry { background: #5a1414; animation: shake .12s infinite; }
+  @keyframes shake {
+    0% { transform: translate(0,0); } 25% { transform: translate(-3px,2px); }
+    50% { transform: translate(3px,-2px); } 75% { transform: translate(-2px,-3px); }
+  }
+
+  /* HUD */
+  #hud {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px; font-weight: 700; font-size: 15px;
+    background: rgba(0,0,0,.25);
+  }
+  #lives { letter-spacing: 2px; }
+  #agenda { color: var(--muted); font-size: 13px; }
+
+  /* Mami */
+  #stage {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 14px 16px 0; position: relative; min-height: 0;
+  }
+  #bubble {
+    background: #fff; color: #222; border-radius: 16px; padding: 10px 14px;
+    font-size: 17px; font-weight: 600; max-width: 92%; text-align: center;
+    position: relative; min-height: 46px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 0 rgba(0,0,0,.25); margin-bottom: 40px;
+    position: relative; z-index: 2;
+  }
+  #bubble::after {
+    content: ""; position: absolute; bottom: -10px; left: 50%; margin-left: -10px;
+    border: 10px solid transparent; border-top-color: #fff; border-bottom: 0;
+  }
+  #game.angry #bubble { background: var(--danger); color: #fff; font-size: 22px; text-transform: uppercase; }
+  #game.angry #bubble::after { border-top-color: var(--danger); }
+
+  #mami {
+    width: 170px; height: 170px; border-radius: 50%;
+    position: relative; transition: transform .15s;
+    flex-shrink: 0;
+  }
+  #mami svg { width: 100%; height: 100%; display: block; border-radius: 50%; border: 5px solid #fff; transition: border-color .2s; }
+  #game.warn #mami { transform: scale(1.06); }
+  #game.angry #mami { transform: scale(1.3); }
+  #game.angry #mami svg { border-color: var(--danger); }
+  #steam {
+    position: absolute; top: -4px; right: -26px; z-index: 1;
+    font-size: 36px; opacity: 0; transition: opacity .15s;
+  }
+  #game.angry #steam { opacity: 1; animation: puff .4s infinite alternate; }
+  @keyframes puff { to { transform: translateY(-6px) scale(1.1); } }
+  #mamiName { margin-top: 36px; font-size: 13px; color: var(--muted); }
+
+  /* Player */
+  #player {
+    text-align: center; padding: 8px 16px 4px;
+  }
+  #playerEmoji { font-size: 56px; line-height: 1; transition: transform .1s; }
+  #playerEmoji.bow { transform: translateY(8px); }
+  #playerText { font-size: 14px; color: var(--muted); min-height: 20px; margin-top: 4px; }
+  #playerText.slack { color: var(--accent); }
+
+  /* Carpet */
+  #carpet {
+    height: 26vh; min-height: 140px; position: relative;
+    border-top: 6px solid #6b1f1f;
+    display: flex; align-items: center; justify-content: center;
+    touch-action: none; cursor: pointer;
+  }
+  #carpet.p0 {
+    background:
+      repeating-linear-gradient(45deg, #9b2c2c 0 14px, #c05621 14px 28px, #2c5282 28px 42px, #c05621 42px 56px);
+  }
+  #carpet.p1 {
+    background:
+      radial-gradient(circle at 50% 50%, #f6e05e 0 10px, transparent 11px) 0 0/40px 40px,
+      repeating-linear-gradient(90deg, #742a2a 0 20px, #9c4221 20px 40px);
+  }
+  #carpet.p2 {
+    background:
+      conic-gradient(from 45deg, #2a4365 0 25%, #c53030 0 50%, #2a4365 0 75%, #c53030 0) 0 0/36px 36px;
+  }
+  #carpet.p3 {
+    background:
+      radial-gradient(circle, #ffd700 0 6px, transparent 7px) 0 0/24px 24px,
+      repeating-conic-gradient(#553c9a 0 15deg, #b83280 15deg 30deg);
+  }
+  #holdBtn {
+    background: rgba(0,0,0,.6); color: #fff; padding: 14px 20px; border-radius: 14px;
+    font-weight: 800; font-size: 18px; text-align: center; pointer-events: none;
+    border: 3px dashed rgba(255,255,255,.5);
+  }
+  #holdBtn small { display: block; font-weight: 500; font-size: 12px; opacity: .8; margin-top: 4px; }
+  #carpet.holding #holdBtn { background: var(--accent); color: #222; border-style: solid; }
+
+  /* Overlays */
+  .overlay {
+    position: absolute; inset: 0; background: rgba(20,16,35,.96);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px 16px; text-align: center; z-index: 10; overflow-y: auto;
+  }
+  .hidden { display: none !important; }
+  .overlay h1 { font-size: 34px; margin: 0 0 4px; }
+  .overlay h2 { font-size: 15px; color: var(--muted); font-weight: 500; margin: 0 0 18px; }
+  .rules { text-align: left; background: var(--panel); border-radius: 14px; padding: 14px 18px; font-size: 15px; line-height: 1.5; max-width: 380px; }
+  .rules p { margin: 6px 0; }
+  .btn {
+    margin-top: 18px; background: var(--accent); color: #222; border: 0; border-radius: 14px;
+    padding: 14px 28px; font-size: 18px; font-weight: 800; cursor: pointer;
+    box-shadow: 0 4px 0 #b38600;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #b38600; }
+  .btn.secondary { background: #25d366; box-shadow: 0 4px 0 #128c4a; color: #fff; }
+  #finalScore { font-size: 48px; font-weight: 900; color: var(--accent); margin: 6px 0; }
+  #rank { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  #stats { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  #best { margin-top: 8px; font-size: 13px; color: var(--muted); }
+
+  /* Flash text */
+  #flash {
+    position: absolute; left: 0; right: 0; top: 38%; text-align: center;
+    font-size: 30px; font-weight: 900; pointer-events: none; z-index: 5;
+    text-shadow: 0 3px 0 #000; opacity: 0;
+  }
+  #flash.show { animation: pop 1.1s ease-out; }
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(.5); }
+    15% { opacity: 1; transform: scale(1.15); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+  }
+  #rezalet {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 64px; font-weight: 900; color: var(--danger); pointer-events: none; z-index: 6;
+    text-shadow: 0 4px 0 #000;
+  }
+  #rezalet span { opacity: 0; display: inline-block; margin: 0 4px; }
+  #rezalet.go span { animation: chant .5s forwards; }
+  #rezalet.go span:nth-child(2) { animation-delay: .35s; }
+  #rezalet.go span:nth-child(3) { animation-delay: .7s; }
+  @keyframes chant { 0% { opacity: 0; transform: scale(2); } 100% { opacity: 1; transform: scale(1); } }
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="hud">
+    <span id="score">0 puan</span>
+    <span id="agenda">Gündem 1/23</span>
+    <span id="lives">❤️❤️❤️</span>
+  </div>
+
+  <div id="stage">
+    <div id="bubble">Hoş geldiniz arkadaşlar...</div>
+    <div id="mami">
+      <div id="steam">💢</div>
+      <svg id="mamiSvg" viewBox="0 0 200 200" aria-label="Mami">
+        <defs><clipPath id="clip"><circle cx="100" cy="100" r="96"/></clipPath></defs>
+        <circle id="mamiBg" cx="100" cy="100" r="96" fill="#4a3f6b"/>
+        <g clip-path="url(#clip)">
+          <!-- ceket, gömlek, papyon -->
+          <path d="M22 200 Q30 158 100 150 Q170 158 178 200Z" fill="#1f2b4d"/>
+          <path d="M82 150 L100 200 L118 150Z" fill="#f4f1ea"/>
+          <path d="M70 152 L100 200 L84 150Z M130 152 L100 200 L116 150Z" fill="#2c2c34"/>
+          <rect x="88" y="134" width="24" height="20" fill="#e2a982"/>
+          <path d="M100 160 L84 152 L84 168Z M100 160 L116 152 L116 168Z" fill="#111"/>
+          <circle cx="100" cy="160" r="4" fill="#111"/>
+          <circle cx="132" cy="176" r="7" fill="#fff"/><circle cx="132" cy="176" r="3" fill="#e8e2d0"/>
+        </g>
+        <!-- kulaklar ve yüz -->
+        <ellipse cx="57" cy="96" rx="8" ry="12" fill="#e2a982"/>
+        <ellipse cx="143" cy="96" rx="8" ry="12" fill="#e2a982"/>
+        <ellipse id="face" cx="100" cy="92" rx="43" ry="50" fill="#eab792"/>
+        <!-- kıvırcık saç -->
+        <g fill="#2a1c13">
+          <path d="M58 82 Q54 50 74 40 Q100 28 126 40 Q146 50 142 82 Q136 62 120 60 Q100 56 80 60 Q64 62 58 82Z"/>
+          <circle cx="70" cy="48" r="10"/><circle cx="84" cy="38" r="11"/><circle cx="100" cy="34" r="12"/>
+          <circle cx="116" cy="37" r="11"/><circle cx="130" cy="46" r="10"/><circle cx="92" cy="44" r="9"/>
+          <circle cx="110" cy="44" r="9"/><circle cx="62" cy="62" r="7"/><circle cx="138" cy="62" r="7"/>
+        </g>
+        <!-- damar -->
+        <path id="vein" d="M118 58 l6 6 m-6 0 l6 -6 m-14 4 l4 4 m4 -4 l-4 4" stroke="#d62828" stroke-width="3" stroke-linecap="round" opacity="0"/>
+        <!-- sakal (çenesi kır) -->
+        <path d="M57 92 Q58 140 100 150 Q142 140 143 92 Q140 112 128 114 Q100 104 72 114 Q60 112 57 92Z" fill="#3a2a1f"/>
+        <ellipse cx="100" cy="140" rx="15" ry="8" fill="#8f8a84" opacity=".8"/>
+        <!-- yanaklar -->
+        <ellipse id="cheekL" cx="70" cy="104" rx="9" ry="6" fill="#ff5a5a" opacity="0"/>
+        <ellipse id="cheekR" cx="130" cy="104" rx="9" ry="6" fill="#ff5a5a" opacity="0"/>
+        <!-- gözler -->
+        <path id="eyeL" d="M76 90 Q83 84 90 90" stroke="#2a1c13" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path id="eyeR" d="M110 90 Q117 84 124 90" stroke="#2a1c13" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path id="browL" d="" stroke="#2a1c13" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path id="browR" d="" stroke="#2a1c13" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M100 92 Q96 104 102 108" stroke="#c98a66" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- ağız -->
+        <path id="mouth" d="" stroke="#3a2a1f" stroke-width="2"/>
+        <path id="teeth" d="" fill="#fff"/>
+      </svg>
+    </div>
+    <div id="mamiName">Mami · Kurucu</div>
+  </div>
+
+  <div id="player">
+    <div id="playerEmoji">🙇</div>
+    <div id="playerText">Halıya bakıyorsun. Masum.</div>
+  </div>
+
+  <div id="carpet" class="p0">
+    <div id="holdBtn">BASILI TUT = İŞ ÇEVİR<small>Bırak = ayaklarını topla, halıya bak</small></div>
+  </div>
+
+  <div id="flash"></div>
+  <div id="rezalet" class="hidden"><span>RE</span><span>ZA</span><span>LET</span></div>
+
+  <div id="intro" class="overlay">
+    <h1>🧶 Toplantı Halısı</h1>
+    <h2>Meeting Challenge (Emsi) sunar</h2>
+    <div class="rules">
+      <p>Mami toplantı yapıyor. Sen arkadan <b>iş çeviriyorsun</b>.</p>
+      <p>👆 <b>Halıya basılı tut</b> (ya da boşluk tuşu): telefona bak, çekirdek çitle, puan topla.</p>
+      <p>😠 Mami'nin kaşları çatılınca <b>hemen bırak</b>: ayaklarını topla, halıya bak.</p>
+      <p>💥 Mami patladığında hâlâ iş çeviriyorsan canın gider.</p>
+      <p>😏 Dikkat: bazen sadece şaka yapıyor.</p>
+    </div>
+    <button class="btn" id="startBtn">Toplantıya Katıl</button>
+  </div>
+
+  <div id="over" class="overlay hidden">
+    <h1>Toplantı bitti</h1>
+    <div id="finalScore">0</div>
+    <div id="rank"></div>
+    <div id="stats"></div>
+    <div id="best"></div>
+    <button class="btn" id="againBtn">Bir toplantı daha 😩</button>
+    <button class="btn secondary" id="shareBtn">Gruba at 📲</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const game = $('game'), bubble = $('bubble'), carpet = $('carpet');
+  const playerEmoji = $('playerEmoji'), playerText = $('playerText');
+
+  const CALM = [
+    'Şimdi gündemin bir sonraki maddesine geçiyoruz...',
+    'Bu konuyu geçen hafta da konuşmuştuk ama...',
+    'Kısa tutacağım, iki saat sürmez...',
+    'Emsi\'nin vizyonu çok net arkadaşlar...',
+    'Kameralar açık olsun lütfen...',
+    'Herkes not alsın, sonra sorarım...',
+    'Bir de şu Excel\'e bakalım...',
+    'Meeting Challenge büyüyor arkadaşlar...',
+    'Bu toplantı tarihe geçecek...',
+    'Bunu bir de en baştan anlatayım...'
+  ];
+  const WARN = ['Arkadaşlar...', 'Bir dakika...', 'Hmm.', 'Şimdi bakın...', 'Ben bir şey söyleyeyim mi...'];
+  const ANGRY = ['Mal olduk mal!', 'Emsi 2.0!', 'Bişi yok bişi yok bişi yok!'];
+  const FAKE = ['Şaka şaka 😄', 'Yok yok, devam', 'Neyse... 🙂', 'Gülümseyin biraz'];
+  const CAUGHT = ['Sen ne yapıyorsun orada?!', 'Telefonu bırak!', 'Ben konuşurken mi?!'];
+  const SLACK = [
+    ['📱', 'Instagram\'da geziyorsun'],
+    ['🌻', 'Çekirdek çitliyorsun'],
+    ['💬', 'Başka grupta toplantıyı çekiştiriyorsun'],
+    ['😴', 'Kamera kapalı, uyukluyorsun'],
+    ['🍕', 'Yemek siparişi veriyorsun'],
+    ['🎮', 'Gizlice oyun oynuyorsun'],
+    ['🛒', 'Sepete ürün atıyorsun']
+  ];
+  const PATTERNS = ['Klasik Kilim', 'Isparta Halısı', 'Hereke İpeği', '✨ EFSANEVİ TOPLANTI HALISI ✨'];
+  const RANKS = [
+    [0, 'Halı Stajyeri'],
+    [300, 'Halı Gözlemcisi'],
+    [800, 'Desen Uzmanı'],
+    [1600, 'Kıdemli Halı Analisti'],
+    [3000, 'Emsi Halı Direktörü'],
+    [5000, 'Halının Ta Kendisi 🧶']
+  ];
+  const AGENDA_TOTAL = 23;
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+
+  let s; // oyun durumu
+  let holding = false;
+  let raf = 0, last = 0;
+
+  // --- ses ---
+  let actx = null;
+  function beep(freq, dur, type = 'square', vol = .08) {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = type; o.frequency.value = freq;
+      g.gain.value = vol;
+      g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(); o.stop(actx.currentTime + dur);
+    } catch (e) {}
+  }
+
+  function reset() {
+    s = {
+      score: 0, lives: 3, agenda: 1,
+      phase: 'calm', phaseT: 0, phaseLen: 3,
+      fake: false, caughtThisRound: false,
+      agendaT: 0, talkT: 0,
+      slackIdx: 0, slackT: 0,
+      angerCount: 0, dodged: 0, carpetTime: 0, slackTime: 0, fakesSurvived: 0,
+      over: false
+    };
+    enterCalm();
+    updateHud();
+  }
+
+  function difficulty() { return Math.min(1, (s.agenda - 1) / 15); }
+
+  function enterCalm() {
+    s.phase = 'calm'; s.phaseT = 0;
+    const d = difficulty();
+    s.phaseLen = 2.2 + Math.random() * (4 - 2 * d);
+    game.classList.remove('warn', 'angry');
+    bubble.textContent = pick(CALM);
+    setFace('calm');
+  }
+  function enterWarn() {
+    s.phase = 'warn'; s.phaseT = 0;
+    const d = difficulty();
+    s.phaseLen = 0.95 - 0.5 * d + Math.random() * 0.2; // giderek kısalan uyarı
+    s.fake = Math.random() < 0.18 + 0.12 * d;
+    game.classList.add('warn'); game.classList.remove('angry');
+    bubble.textContent = pick(WARN);
+    setFace('warn');
+    beep(220, .15, 'sawtooth', .05);
+  }
+  function enterAngry() {
+    s.phase = 'angry'; s.phaseT = 0; s.caughtThisRound = false;
+    s.phaseLen = 1.4 + Math.random() * 1.1;
+    s.angerCount++;
+    game.classList.remove('warn'); game.classList.add('angry');
+    bubble.textContent = pick(ANGRY);
+    setFace('angry');
+    beep(110, .4, 'sawtooth', .12);
+    if (navigator.vibrate) navigator.vibrate(120);
+  }
+  function enterFake() {
+    s.phase = 'fake'; s.phaseT = 0; s.phaseLen = 1;
+    game.classList.remove('warn', 'angry');
+    bubble.textContent = pick(FAKE);
+    setFace('calm');
+    s.fakesSurvived++;
+  }
+
+  const FACES = {
+    calm: {
+      browL: 'M74 76 Q83 70 92 75', browR: 'M108 75 Q117 70 126 76',
+      eyeL: 'M76 90 Q83 84 90 90', eyeR: 'M110 90 Q117 84 124 90',
+      mouth: 'M76 116 Q100 140 124 116 Q100 122 76 116Z', mouthFill: '#7a1f1f',
+      teeth: 'M80 118 Q100 124 120 118 Q118 125 100 126 Q82 125 80 118Z',
+      face: '#eab792', cheeks: 0, vein: 0, bg: '#4a3f6b'
+    },
+    warn: {
+      browL: 'M74 74 L92 81', browR: 'M108 81 L126 74',
+      eyeL: 'M77 89 L90 89', eyeR: 'M110 89 L123 89',
+      mouth: 'M84 122 Q100 118 116 122 Q100 124 84 122Z', mouthFill: '#3a2a1f',
+      teeth: '',
+      face: '#f0a985', cheeks: .7, vein: 0, bg: '#6b3f5a'
+    },
+    angry: {
+      browL: 'M72 70 L94 84', browR: 'M106 84 L128 70',
+      eyeL: 'M78 92 Q84 86 90 90', eyeR: 'M110 90 Q116 86 122 92',
+      mouth: 'M80 128 Q80 110 100 110 Q120 110 120 128 Q100 142 80 128Z', mouthFill: '#5a0d0d',
+      teeth: 'M84 114 Q100 108 116 114 L114 119 Q100 115 86 119Z',
+      face: '#f07a6a', cheeks: 1, vein: 1, bg: '#8a1c1c'
+    }
+  };
+
+  function setFace(mood) {
+    const f = FACES[mood];
+    ['browL', 'browR', 'eyeL', 'eyeR', 'teeth'].forEach(k => $(k).setAttribute('d', f[k]));
+    $('mouth').setAttribute('d', f.mouth);
+    $('mouth').setAttribute('fill', f.mouthFill);
+    $('face').setAttribute('fill', f.face);
+    $('mamiBg').setAttribute('fill', f.bg);
+    $('vein').setAttribute('opacity', f.vein);
+    $('cheekL').setAttribute('opacity', f.cheeks);
+    $('cheekR').setAttribute('opacity', f.cheeks);
+  }
+  setFace('calm');
+
+  function flash(text, color) {
+    const f = $('flash');
+    f.textContent = text; f.style.color = color || '#fff';
+    f.classList.remove('show'); void f.offsetWidth; f.classList.add('show');
+  }
+
+  function rezalet() {
+    const r = $('rezalet');
+    r.classList.remove('hidden', 'go'); void r.offsetWidth; r.classList.add('go');
+    [0, 350, 700].forEach((t, i) => setTimeout(() => beep(330 + i * 110, .2, 'square', .1), t));
+    setTimeout(() => r.classList.add('hidden'), 1500);
+  }
+
+  function updateHud() {
+    $('score').textContent = Math.floor(s.score) + ' puan';
+    $('agenda').textContent = `Gündem ${Math.min(s.agenda, AGENDA_TOTAL)}/${AGENDA_TOTAL}`;
+    $('lives').textContent = '❤️'.repeat(s.lives) + '🖤'.repeat(3 - s.lives);
+  }
+
+  function updatePlayer() {
+    if (holding) {
+      const [e, t] = SLACK[s.slackIdx];
+      playerEmoji.textContent = e; playerEmoji.classList.remove('bow');
+      playerText.textContent = t; playerText.className = 'slack';
+    } else {
+      playerEmoji.textContent = '🙇'; playerEmoji.classList.add('bow');
+      playerText.textContent = s && s.phase === 'angry' ? 'Ayaklar toplandı. Halıda desen sayıyorsun.' : 'Halıya bakıyorsun. Masum.';
+      playerText.className = '';
+    }
+    carpet.classList.toggle('holding', holding);
+  }
+
+  function caught() {
+    s.caughtThisRound = true;
+    s.lives--;
+    updateHud();
+    bubble.textContent = pick(CAUGHT);
+    flash('YAKALANDIN! 😱', '#ff3b3b');
+    if (navigator.vibrate) navigator.vibrate([200, 80, 200]);
+    rezalet();
+    if (s.lives <= 0) setTimeout(gameOver, 1600);
+  }
+
+  function nextAgenda() {
+    s.agenda++;
+    s.agendaT = 0;
+    const p = Math.min(PATTERNS.length - 1, Math.floor((s.agenda - 1) / 5));
+    const prev = carpet.className.match(/p(\d)/);
+    if (!prev || +prev[1] !== p) {
+      carpet.classList.remove('p0', 'p1', 'p2', 'p3');
+      carpet.classList.add('p' + p);
+      if (p > 0) flash('Yeni halı: ' + PATTERNS[p], '#ffcc33');
+    }
+    if (s.agenda > AGENDA_TOTAL) { s.score += 500; flash('Toplantı bitti! +500', '#3ddc84'); setTimeout(gameOver, 1200); s.over = true; }
+    updateHud();
+  }
+
+  function tick(now) {
+    const dt = Math.min(.05, (now - last) / 1000);
+    last = now;
+    if (!s.over && s.lives > 0) step(dt);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function step(dt) {
+    s.phaseT += dt;
+    s.agendaT += dt;
+
+    if (holding) {
+      const mult = 1 + (s.agenda - 1) * 0.15;
+      const bonus = s.phase === 'warn' ? 2 : 1; // riskli an, çifte puan
+      s.score += 40 * mult * bonus * dt;
+      s.slackTime += dt;
+      s.slackT += dt;
+      if (s.slackT > 2.2) { s.slackT = 0; s.slackIdx = (s.slackIdx + 1) % SLACK.length; updatePlayer(); }
+    } else if (s.phase === 'angry') {
+      s.carpetTime += dt;
+    }
+
+    if (s.phase === 'calm') {
+      s.talkT += dt;
+      if (s.talkT > 2.5) { s.talkT = 0; bubble.textContent = pick(CALM); }
+      if (s.phaseT >= s.phaseLen) enterWarn();
+    } else if (s.phase === 'warn') {
+      if (s.phaseT >= s.phaseLen) s.fake ? enterFake() : enterAngry();
+    } else if (s.phase === 'angry') {
+      if (holding && s.phaseT > 0.12 && !s.caughtThisRound) caught();
+      if (s.phaseT >= s.phaseLen) {
+        if (!s.caughtThisRound) { s.dodged++; s.score += 50; flash('+50 Masumiyet', '#3ddc84'); }
+        if (s.lives > 0) enterCalm();
+      }
+    } else if (s.phase === 'fake') {
+      if (s.phaseT >= s.phaseLen) enterCalm();
+    }
+
+    if (s.agendaT > 14 && s.phase === 'calm') nextAgenda();
+    updateHud();
+  }
+
+  function rankFor(score) {
+    let r = RANKS[0][1];
+    for (const [min, name] of RANKS) if (score >= min) r = name;
+    return r;
+  }
+
+  function gameOver() {
+    s.over = true;
+    holding = false; updatePlayer();
+    game.classList.remove('warn', 'angry');
+    const score = Math.floor(s.score);
+    let best = 0;
+    try { best = +localStorage.getItem('hali-best') || 0; if (score > best) { localStorage.setItem('hali-best', score); } } catch (e) {}
+    $('finalScore').textContent = score;
+    $('rank').textContent = rankFor(score);
+    const desen = Math.round(s.carpetTime * 7);
+    $('stats').innerHTML =
+      `Gündem maddesi: <b>${Math.min(s.agenda, AGENDA_TOTAL)}/${AGENDA_TOTAL}</b><br>` +
+      `Mami ${s.angerCount} kez patladı, ${s.dodged} tanesini halıya bakarak atlattın<br>` +
+      `Halıda toplam <b>${desen}</b> desen saydın<br>` +
+      `${Math.round(s.slackTime)} saniye boyunca iş çevirdin`;
+    $('best').textContent = score > best ? '🏆 Yeni rekor!' : `Rekorun: ${best}`;
+    $('over').classList.remove('hidden');
+  }
+
+  function share() {
+    const score = Math.floor(s.score);
+    const text = `Toplantı Halısı'nda ${score} puan yaptım, unvanım: ${rankFor(score)} 🧶 Mal olduk mal! Sen de dene: ${location.href}`;
+    if (navigator.share) {
+      navigator.share({ title: 'Toplantı Halısı', text }).catch(() => {});
+    } else {
+      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    }
+  }
+
+  function start() {
+    $('intro').classList.add('hidden');
+    $('over').classList.add('hidden');
+    carpet.classList.remove('p1', 'p2', 'p3'); carpet.classList.add('p0');
+    reset();
+    holding = false; updatePlayer();
+    cancelAnimationFrame(raf);
+    last = performance.now();
+    raf = requestAnimationFrame(tick);
+  }
+
+  // --- kontroller ---
+  function press(e) {
+    if (!s || s.over) return;
+    if (e) e.preventDefault();
+    if (!holding) { holding = true; updatePlayer(); }
+  }
+  function release() {
+    if (holding) { holding = false; updatePlayer(); }
+  }
+  carpet.addEventListener('pointerdown', e => { carpet.setPointerCapture && carpet.setPointerCapture(e.pointerId); press(e); });
+  carpet.addEventListener('pointerup', release);
+  carpet.addEventListener('pointercancel', release);
+  carpet.addEventListener('contextmenu', e => e.preventDefault());
+  window.addEventListener('keydown', e => { if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) press(); } });
+  window.addEventListener('keyup', e => { if (e.code === 'Space') release(); });
+  window.addEventListener('blur', release);
+
+  $('startBtn').onclick = start;
+  $('againBtn').onclick = start;
+  $('shareBtn').onclick = share;
+})();
+</script>
+</body>
+</html>
