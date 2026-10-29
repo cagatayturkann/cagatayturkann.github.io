@@ -74,12 +74,10 @@
     position: relative; transition: transform .15s;
     flex-shrink: 0;
   }
-  #mami img, #mami svg { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
-  #mami img { border: 5px solid #fff; transition: filter .2s; }
+  #mami svg { width: 100%; height: 100%; display: block; border-radius: 50%; border: 5px solid #fff; transition: border-color .2s; }
   #game.warn #mami { transform: scale(1.06); }
-  #game.warn #mami img { filter: saturate(1.4) sepia(.3) hue-rotate(-20deg); }
   #game.angry #mami { transform: scale(1.3); }
-  #game.angry #mami img { filter: saturate(2.5) sepia(.6) hue-rotate(-40deg) contrast(1.2); border-color: var(--danger); }
+  #game.angry #mami svg { border-color: var(--danger); }
   #steam {
     position: absolute; top: -4px; right: -26px; z-index: 1;
     font-size: 36px; opacity: 0; transition: opacity .15s;
@@ -190,18 +188,47 @@
     <div id="bubble">Hoş geldiniz arkadaşlar...</div>
     <div id="mami">
       <div id="steam">💢</div>
-      <!-- Fotoğraf yoksa çizgi film Mami -->
       <svg id="mamiSvg" viewBox="0 0 200 200" aria-label="Mami">
-        <circle cx="100" cy="100" r="98" fill="#ffd8b0" stroke="#fff" stroke-width="5"/>
-        <path d="M30 80 Q35 20 100 18 Q165 20 170 80 Q150 50 100 48 Q50 50 30 80Z" fill="#2d2016"/>
-        <path id="browL" d="M55 82 L88 78" stroke="#2d2016" stroke-width="7" stroke-linecap="round"/>
-        <path id="browR" d="M112 78 L145 82" stroke="#2d2016" stroke-width="7" stroke-linecap="round"/>
-        <circle cx="72" cy="98" r="8" fill="#2d2016"/>
-        <circle cx="128" cy="98" r="8" fill="#2d2016"/>
-        <path d="M40 120 Q100 200 160 120 Q150 175 100 182 Q50 175 40 120Z" fill="#2d2016"/>
-        <path id="mouth" d="M78 140 Q100 152 122 140" stroke="#7a2e1f" stroke-width="6" fill="none" stroke-linecap="round"/>
-        <circle id="cheekL" cx="58" cy="122" r="11" fill="#ff7b7b" opacity="0"/>
-        <circle id="cheekR" cx="142" cy="122" r="11" fill="#ff7b7b" opacity="0"/>
+        <defs><clipPath id="clip"><circle cx="100" cy="100" r="96"/></clipPath></defs>
+        <circle id="mamiBg" cx="100" cy="100" r="96" fill="#4a3f6b"/>
+        <g clip-path="url(#clip)">
+          <!-- ceket, gömlek, papyon -->
+          <path d="M22 200 Q30 158 100 150 Q170 158 178 200Z" fill="#1f2b4d"/>
+          <path d="M82 150 L100 200 L118 150Z" fill="#f4f1ea"/>
+          <path d="M70 152 L100 200 L84 150Z M130 152 L100 200 L116 150Z" fill="#2c2c34"/>
+          <rect x="88" y="134" width="24" height="20" fill="#e2a982"/>
+          <path d="M100 160 L84 152 L84 168Z M100 160 L116 152 L116 168Z" fill="#111"/>
+          <circle cx="100" cy="160" r="4" fill="#111"/>
+          <circle cx="132" cy="176" r="7" fill="#fff"/><circle cx="132" cy="176" r="3" fill="#e8e2d0"/>
+        </g>
+        <!-- kulaklar ve yüz -->
+        <ellipse cx="57" cy="96" rx="8" ry="12" fill="#e2a982"/>
+        <ellipse cx="143" cy="96" rx="8" ry="12" fill="#e2a982"/>
+        <ellipse id="face" cx="100" cy="92" rx="43" ry="50" fill="#eab792"/>
+        <!-- kıvırcık saç -->
+        <g fill="#2a1c13">
+          <path d="M58 82 Q54 50 74 40 Q100 28 126 40 Q146 50 142 82 Q136 62 120 60 Q100 56 80 60 Q64 62 58 82Z"/>
+          <circle cx="70" cy="48" r="10"/><circle cx="84" cy="38" r="11"/><circle cx="100" cy="34" r="12"/>
+          <circle cx="116" cy="37" r="11"/><circle cx="130" cy="46" r="10"/><circle cx="92" cy="44" r="9"/>
+          <circle cx="110" cy="44" r="9"/><circle cx="62" cy="62" r="7"/><circle cx="138" cy="62" r="7"/>
+        </g>
+        <!-- damar -->
+        <path id="vein" d="M118 58 l6 6 m-6 0 l6 -6 m-14 4 l4 4 m4 -4 l-4 4" stroke="#d62828" stroke-width="3" stroke-linecap="round" opacity="0"/>
+        <!-- sakal (çenesi kır) -->
+        <path d="M57 92 Q58 140 100 150 Q142 140 143 92 Q140 112 128 114 Q100 104 72 114 Q60 112 57 92Z" fill="#3a2a1f"/>
+        <ellipse cx="100" cy="140" rx="15" ry="8" fill="#8f8a84" opacity=".8"/>
+        <!-- yanaklar -->
+        <ellipse id="cheekL" cx="70" cy="104" rx="9" ry="6" fill="#ff5a5a" opacity="0"/>
+        <ellipse id="cheekR" cx="130" cy="104" rx="9" ry="6" fill="#ff5a5a" opacity="0"/>
+        <!-- gözler -->
+        <path id="eyeL" d="M76 90 Q83 84 90 90" stroke="#2a1c13" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path id="eyeR" d="M110 90 Q117 84 124 90" stroke="#2a1c13" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path id="browL" d="" stroke="#2a1c13" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path id="browR" d="" stroke="#2a1c13" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M100 92 Q96 104 102 108" stroke="#c98a66" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- ağız -->
+        <path id="mouth" d="" stroke="#3a2a1f" stroke-width="2"/>
+        <path id="teeth" d="" fill="#fff"/>
       </svg>
     </div>
     <div id="mamiName">Mami · Kurucu</div>
@@ -248,28 +275,6 @@
   const $ = id => document.getElementById(id);
   const game = $('game'), bubble = $('bubble'), carpet = $('carpet');
   const playerEmoji = $('playerEmoji'), playerText = $('playerText');
-
-  // Fotoğraf varsa onu kullan: hali/mami.jpg (normal), hali/mami-kizgin.jpg (opsiyonel, sinirli)
-  const photos = { calm: null, angry: null };
-  function tryPhoto(src, key) {
-    const img = new Image();
-    img.onload = () => {
-      photos[key] = src;
-      if (key === 'calm') {
-        const el = document.createElement('img');
-        el.id = 'mamiImg'; el.alt = 'Mami'; el.src = src;
-        $('mamiSvg').replaceWith(el);
-      }
-    };
-    img.src = src;
-  }
-  tryPhoto('mami.jpg', 'calm');
-  tryPhoto('mami-kizgin.jpg', 'angry');
-  function setMamiPhoto(mood) {
-    const img = $('mamiImg');
-    if (!img) return;
-    img.src = (mood === 'angry' && photos.angry) ? photos.angry : photos.calm;
-  }
 
   const CALM = [
     'Şimdi gündemin bir sonraki maddesine geçiyoruz...',
@@ -348,7 +353,7 @@
     s.phaseLen = 2.2 + Math.random() * (4 - 2 * d);
     game.classList.remove('warn', 'angry');
     bubble.textContent = pick(CALM);
-    setFace('calm'); setMamiPhoto('calm');
+    setFace('calm');
   }
   function enterWarn() {
     s.phase = 'warn'; s.phaseT = 0;
@@ -366,7 +371,7 @@
     s.angerCount++;
     game.classList.remove('warn'); game.classList.add('angry');
     bubble.textContent = pick(ANGRY);
-    setFace('angry'); setMamiPhoto('angry');
+    setFace('angry');
     beep(110, .4, 'sawtooth', .12);
     if (navigator.vibrate) navigator.vibrate(120);
   }
@@ -378,24 +383,42 @@
     s.fakesSurvived++;
   }
 
-  function setFace(mood) {
-    const bl = $('browL'), br = $('browR'), m = $('mouth');
-    if (!bl) return;
-    const cheeks = [$('cheekL'), $('cheekR')];
-    if (mood === 'calm') {
-      bl.setAttribute('d', 'M55 82 L88 78'); br.setAttribute('d', 'M112 78 L145 82');
-      m.setAttribute('d', 'M78 140 Q100 152 122 140');
-      cheeks.forEach(c => c.setAttribute('opacity', 0));
-    } else if (mood === 'warn') {
-      bl.setAttribute('d', 'M55 76 L88 88'); br.setAttribute('d', 'M112 88 L145 76');
-      m.setAttribute('d', 'M80 145 L120 145');
-      cheeks.forEach(c => c.setAttribute('opacity', .6));
-    } else {
-      bl.setAttribute('d', 'M52 70 L90 92'); br.setAttribute('d', 'M110 92 L148 70');
-      m.setAttribute('d', 'M75 152 Q100 128 125 152');
-      cheeks.forEach(c => c.setAttribute('opacity', 1));
+  const FACES = {
+    calm: {
+      browL: 'M74 76 Q83 70 92 75', browR: 'M108 75 Q117 70 126 76',
+      eyeL: 'M76 90 Q83 84 90 90', eyeR: 'M110 90 Q117 84 124 90',
+      mouth: 'M76 116 Q100 140 124 116 Q100 122 76 116Z', mouthFill: '#7a1f1f',
+      teeth: 'M80 118 Q100 124 120 118 Q118 125 100 126 Q82 125 80 118Z',
+      face: '#eab792', cheeks: 0, vein: 0, bg: '#4a3f6b'
+    },
+    warn: {
+      browL: 'M74 74 L92 81', browR: 'M108 81 L126 74',
+      eyeL: 'M77 89 L90 89', eyeR: 'M110 89 L123 89',
+      mouth: 'M84 122 Q100 118 116 122 Q100 124 84 122Z', mouthFill: '#3a2a1f',
+      teeth: '',
+      face: '#f0a985', cheeks: .7, vein: 0, bg: '#6b3f5a'
+    },
+    angry: {
+      browL: 'M72 70 L94 84', browR: 'M106 84 L128 70',
+      eyeL: 'M78 92 Q84 86 90 90', eyeR: 'M110 90 Q116 86 122 92',
+      mouth: 'M80 128 Q80 110 100 110 Q120 110 120 128 Q100 142 80 128Z', mouthFill: '#5a0d0d',
+      teeth: 'M84 114 Q100 108 116 114 L114 119 Q100 115 86 119Z',
+      face: '#f07a6a', cheeks: 1, vein: 1, bg: '#8a1c1c'
     }
+  };
+
+  function setFace(mood) {
+    const f = FACES[mood];
+    ['browL', 'browR', 'eyeL', 'eyeR', 'teeth'].forEach(k => $(k).setAttribute('d', f[k]));
+    $('mouth').setAttribute('d', f.mouth);
+    $('mouth').setAttribute('fill', f.mouthFill);
+    $('face').setAttribute('fill', f.face);
+    $('mamiBg').setAttribute('fill', f.bg);
+    $('vein').setAttribute('opacity', f.vein);
+    $('cheekL').setAttribute('opacity', f.cheeks);
+    $('cheekR').setAttribute('opacity', f.cheeks);
   }
+  setFace('calm');
 
   function flash(text, color) {
     const f = $('flash');
